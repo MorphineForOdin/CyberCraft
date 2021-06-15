@@ -20,6 +20,7 @@ namespace TechMarket.API
 
         public void ConfigureServices(IServiceCollection services)
             => services
+                .Apply(this.ConfigureCORS)
                 .Apply(this.RegisterDI)
                 .AddControllers();
 
@@ -31,7 +32,18 @@ namespace TechMarket.API
                     failure: app => app.UseHsts())
                 .UseHttpsRedirection()
                 .UseRouting()
+                .UseCors()
                 .UseEndpoints(endpoints => endpoints.MapControllers());
+
+        private IServiceCollection ConfigureCORS(IServiceCollection services)
+            => services
+            .AddCors(options => options
+            .AddDefaultPolicy(corsPolicyBuilder => corsPolicyBuilder
+                .SetIsOriginAllowed(_ => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .WithExposedHeaders("Content-Disposition")));
 
         private IServiceCollection RegisterDI(IServiceCollection services)
             => services
