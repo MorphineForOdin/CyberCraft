@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { HttpDefaultsInterceptor } from './interceptors';
+import { LandingModule } from './pages/landing/landing.module';
+import { LoginModule } from './pages/login/login.module';
 
 @NgModule({
     declarations: [
@@ -14,15 +15,11 @@ import { HttpDefaultsInterceptor } from './interceptors';
         BrowserModule,
         AppRoutingModule,
         CoreModule,
+        LandingModule,
+        LoginModule,
         HttpClientModule,
     ],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpDefaultsInterceptor,
-            multi: true
-        }
-    ],
+    providers: [],
     bootstrap: [
         AppComponent
     ]
