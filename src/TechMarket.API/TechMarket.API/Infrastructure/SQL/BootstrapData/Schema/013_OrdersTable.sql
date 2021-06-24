@@ -19,13 +19,13 @@ GO
 --============================================================================
 CREATE TABLE dbo.Orders (
 	[Id] INT NOT NULL IDENTITY(1, 1)
-		CONSTRAINT PK_Orders_Id PRIMARY KEY,
-	[UserId] INT
-		CONSTRAINT FK_Orders_UserId FOREIGN KEY (UserId) REFERENCES dbo.Users([Id]),
-	[AddressesId] INT
-		CONSTRAINT FK_Orders_AddressesId FOREIGN KEY (AddressesId) REFERENCES dbo.Addresses([Id]),
-	[StatusId] INT
-		CONSTRAINT FK_Orders_StatusId FOREIGN KEY (StatusId) REFERENCES dbo.OrderStatuses([Id]),
+		CONSTRAINT PK_Orders PRIMARY KEY,
+	[UserId] INT NOT NULL
+		CONSTRAINT FK_Users_Id FOREIGN KEY REFERENCES dbo.Users([Id]),
+	[AddressesId] INT NOT NULL
+		CONSTRAINT FK_Addresses_Id FOREIGN KEY REFERENCES dbo.Addresses([Id]),
+	[StatusId] INT NOT NULL
+		CONSTRAINT FK_OrderStatuses_Id FOREIGN KEY (StatusId) REFERENCES dbo.OrderStatuses([Id]),
 	[Date] DATETIME
 		CONSTRAINT DF_Orders_Date DEFAULT GETDATE()
 );

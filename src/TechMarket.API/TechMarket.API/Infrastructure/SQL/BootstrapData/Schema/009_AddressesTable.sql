@@ -4,10 +4,10 @@ GO
 IF EXISTS(
 	SELECT *
 	FROM sys.tables
-	WHERE name = 'OrderStatuses'
+	WHERE name = 'Addresses'
 		AND SCHEMA_NAME(schema_id) = 'dbo')
 	BEGIN
-		DROP TABLE dbo.OrderStatuses;
+		DROP TABLE dbo.Addresses;
 	END
 GO
 ------------------------------------------------------------------------------
@@ -17,10 +17,14 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE TABLE dbo.OrderStatuses (
+CREATE TABLE dbo.Addresses (
 	[Id] INT NOT NULL IDENTITY(1, 1)
-		CONSTRAINT PK_OrderStatuses_Id PRIMARY KEY,
-	[Name] NVARCHAR(30) NOT NULL
+		CONSTRAINT PK_Addresses PRIMARY KEY,
+	[Name] NVARCHAR(100) NOT NULL,
+	[Country] NVARCHAR(100) NOT NULL,
+	[City] NVARCHAR(100) NOT NULL,
+	[Address] NVARCHAR(100) NOT NULL,
+	[ContactInfo] NVARCHAR(100) NOT NULL
 );
 GO
 --============================================================================

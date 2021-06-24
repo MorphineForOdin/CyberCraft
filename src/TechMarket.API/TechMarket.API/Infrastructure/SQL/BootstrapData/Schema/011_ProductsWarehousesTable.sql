@@ -4,10 +4,10 @@ GO
 IF EXISTS(
 	SELECT *
 	FROM sys.tables
-	WHERE name = 'Addresses'
+	WHERE name = 'ProductsWarehouses'
 		AND SCHEMA_NAME(schema_id) = 'dbo')
 	BEGIN
-		DROP TABLE dbo.Addresses;
+		DROP TABLE dbo.ProductsWarehouses;
 	END
 GO
 ------------------------------------------------------------------------------
@@ -17,14 +17,14 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE TABLE dbo.Addresses (
-	[Id] INT NOT NULL IDENTITY(1, 1)
-		CONSTRAINT PK_Addresses_Id PRIMARY KEY,
-	[Name] NVARCHAR(30) NOT NULL,
-	[Country] NVARCHAR(30) NOT NULL,
-	[City] NVARCHAR(30) NOT NULL,
-	[Address] NVARCHAR(50) NOT NULL,
-	[ContactInfo] INT NOT NULL,
+CREATE TABLE dbo.ProductsWarehouses (
+	[ProductId] INT NOT NULL
+		CONSTRAINT FK_Products_Id FOREIGN KEY REFERENCES dbo.Products([Id]),
+	[WarehouseId] INT NOT NULL
+		CONSTRAINT FK_Warehouses_Id FOREIGN KEY REFERENCES dbo.Warehouses([Id]),
+	[Quantity] INT NOT NULL,
+
+	CONSTRAINT PK_ProductsWarehouses PRIMARY KEY ([ProductId], [WarehouseId])
 );
 GO
 --============================================================================

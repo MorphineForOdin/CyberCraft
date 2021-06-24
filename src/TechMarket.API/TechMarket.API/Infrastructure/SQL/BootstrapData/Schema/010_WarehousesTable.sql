@@ -19,10 +19,10 @@ GO
 --============================================================================
 CREATE TABLE dbo.Warehouses (
 	[Id] INT NOT NULL IDENTITY(1, 1)
-		CONSTRAINT PK_Warehouses_Id PRIMARY KEY,
-	[Name] NVARCHAR(30) NOT NULL,
+		CONSTRAINT PK_Warehouses PRIMARY KEY,
+	[Name] NVARCHAR(50) NOT NULL,
 	[AddressId] INT NOT NULL
-		CONSTRAINT FK_Warehouses_AddressId FOREIGN KEY (AddressId) REFERENCES dbo.Addresses([Id])
+		CONSTRAINT FK_Addresses_Id FOREIGN KEY REFERENCES dbo.Addresses([Id])
 );
 GO
 --============================================================================

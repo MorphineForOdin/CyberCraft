@@ -4,10 +4,10 @@ GO
 IF EXISTS(
 	SELECT *
 	FROM sys.tables
-	WHERE name = 'Carts'
+	WHERE name = 'OrderProducts'
 		AND SCHEMA_NAME(schema_id) = 'dbo')
 	BEGIN
-		DROP TABLE dbo.Carts;
+		DROP TABLE dbo.OrderProducts;
 	END
 GO
 ------------------------------------------------------------------------------
@@ -17,15 +17,14 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE TABLE dbo.Carts (
-	[UserId] INT
-		CONSTRAINT FK_Carts_UserId FOREIGN KEY (UserId) REFERENCES dbo.Users([Id]),
-	[ProductId] INT
-		CONSTRAINT FK_Carts_ProductId FOREIGN KEY (ProductId) REFERENCES dbo.Products([Id]),
-	[Quantuty] INT,
-	TotalAmount DECIMAL(10,2) NOT NULL,
-		
-	CONSTRAINT PK_Carts PRIMARY KEY ([UserId], [ProductId])
+CREATE TABLE dbo.OrderProducts (
+	[Id] INT NOT NULL IDENTITY(1, 1)
+		CONSTRAINT PK_OrderProducts PRIMARY KEY,
+	[OrderId] INT NOT NULL
+		CONSTRAINT FK_Orders_Id FOREIGN KEY REFERENCES dbo.Orders([Id]),
+	[ProductId] INT NOT NULL
+		CONSTRAINT FK_Products_Id FOREIGN KEY REFERENCES dbo.Products([Id]),
+	[Quantuty] INT NOT NULL
 );
 GO
 --============================================================================
