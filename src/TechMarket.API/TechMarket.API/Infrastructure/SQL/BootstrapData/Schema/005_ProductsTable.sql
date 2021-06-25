@@ -22,6 +22,7 @@ CREATE TABLE dbo.Products (
 		CONSTRAINT PK_Products PRIMARY KEY,
 	[Name] NVARCHAR(30) NOT NULL,
 	[Description] NVARCHAR(400) NOT NULL,
+    [ImageUrl] NVARCHAR(50) NOT NULL,
 	[CategoryId] INT NOT NULL
 		CONSTRAINT FK_Products_ProductCategories FOREIGN KEY REFERENCES dbo.ProductCategories([Id]),
 	[Price] DECIMAL(10,2) NOT NULL
