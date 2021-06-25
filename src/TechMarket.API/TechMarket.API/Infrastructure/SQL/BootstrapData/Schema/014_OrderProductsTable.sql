@@ -1,6 +1,7 @@
+--============================================================================
 USE [TechMarket];
 GO
-
+------------------------------------------------------------------------------
 IF EXISTS(
 	SELECT *
 	FROM sys.tables
@@ -11,7 +12,6 @@ IF EXISTS(
 	END
 GO
 ------------------------------------------------------------------------------
-
 SET ANSI_NULLS ON;
 SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
@@ -21,10 +21,11 @@ CREATE TABLE dbo.OrderProducts (
 	[Id] INT NOT NULL IDENTITY(1, 1)
 		CONSTRAINT PK_OrderProducts PRIMARY KEY,
 	[OrderId] INT NOT NULL
-		CONSTRAINT FK_Orders_Id FOREIGN KEY REFERENCES dbo.Orders([Id]),
+		CONSTRAINT FK_OrderProducts_Orders FOREIGN KEY REFERENCES dbo.Orders([Id]),
 	[ProductId] INT NOT NULL
-		CONSTRAINT FK_Products_Id FOREIGN KEY REFERENCES dbo.Products([Id]),
+		CONSTRAINT FK_OrderProducts_Products FOREIGN KEY REFERENCES dbo.Products([Id]),
 	[Quantuty] INT NOT NULL
+		CONSTRAINT CH_OrderProducts_Quantity CHECK ([Quantity] > 0)
 );
 GO
 --============================================================================

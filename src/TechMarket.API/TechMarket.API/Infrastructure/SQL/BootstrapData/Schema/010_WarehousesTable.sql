@@ -1,6 +1,7 @@
+--============================================================================
 USE [TechMarket];
 GO
-
+------------------------------------------------------------------------------
 IF EXISTS(
 	SELECT *
 	FROM sys.tables
@@ -11,7 +12,6 @@ IF EXISTS(
 	END
 GO
 ------------------------------------------------------------------------------
-
 SET ANSI_NULLS ON;
 SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
@@ -22,7 +22,7 @@ CREATE TABLE dbo.Warehouses (
 		CONSTRAINT PK_Warehouses PRIMARY KEY,
 	[Name] NVARCHAR(50) NOT NULL,
 	[AddressId] INT NOT NULL
-		CONSTRAINT FK_Addresses_Id FOREIGN KEY REFERENCES dbo.Addresses([Id])
+		CONSTRAINT FK_Warehouses_Addresses FOREIGN KEY REFERENCES dbo.Addresses([Id])
 );
 GO
 --============================================================================
