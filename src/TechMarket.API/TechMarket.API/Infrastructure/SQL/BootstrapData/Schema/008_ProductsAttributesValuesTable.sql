@@ -19,11 +19,11 @@ GO
 --============================================================================
 CREATE TABLE dbo.ProductsAttributesValues (
 	[ProductId] INT NOT NULL
-		CONSTRAINT FK_ProductsAttributesValues_Products REFERENCES dbo.Products([Id]),
+		CONSTRAINT FK_ProductsAttributesValues_Products FOREIGN KEY REFERENCES dbo.Products([Id]),
 	[AttributeId] INT NOT NULL
-		CONSTRAINT FK_ProductsAttributesValues_ProductAttributes REFERENCES dbo.ProductAttributes([Id]),
+		CONSTRAINT FK_ProductsAttributesValues_ProductAttributes FOREIGN KEY REFERENCES dbo.ProductAttributes([Id]),
 	[ValueId] INT NOT NULL
-		CONSTRAINT FK_ProductsAttributesValues_ProductValues REFERENCES dbo.ProductValues([Id]),
+		CONSTRAINT FK_ProductsAttributesValues_ProductValues FOREIGN KEY REFERENCES dbo.ProductValues([Id]),
 		
 	CONSTRAINT PK_ProductsAttributesValues PRIMARY KEY ([ProductId], [AttributeId], [ValueId])
 );
