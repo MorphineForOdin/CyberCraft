@@ -24,7 +24,6 @@ CREATE TABLE dbo.CartProducts (
 		CONSTRAINT FK_CartProducts_Products FOREIGN KEY REFERENCES dbo.Products([Id]),
 	[Quantuty] INT NOT NULL
 		CONSTRAINT CH_CartProducts_Quantity CHECK ([Quantity] > 0),
-	[TotalAmount] DECIMAL(10,2) NOT NULL,
 
 	CONSTRAINT PK_CartProducts PRIMARY KEY ([UserId], [ProductId])
 );

@@ -22,7 +22,7 @@ CREATE TABLE dbo.Orders (
 		CONSTRAINT PK_Orders PRIMARY KEY,
 	[UserId] INT NOT NULL
 		CONSTRAINT FK_Orders_Users FOREIGN KEY REFERENCES dbo.Users([Id]),
-	[AddressesId] INT NOT NULL
+	[AddressId] INT NOT NULL
 		CONSTRAINT FK_Orders_Addresses FOREIGN KEY REFERENCES dbo.Addresses([Id]),
 	[StatusId] INT NOT NULL
 		CONSTRAINT FK_Orders_OrderStatuses FOREIGN KEY (StatusId) REFERENCES dbo.OrderStatuses([Id]),
