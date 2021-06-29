@@ -23,7 +23,7 @@ CREATE TABLE dbo.Users (
 	[FirstName] NVARCHAR(20) NOT NULL,
 	[LastName] NVARCHAR(20) NOT NULL,
 	[RoleId] INT NOT NULL
-		CONSTRAINT FK_Users_UserRoles REFERENCES dbo.UserRoles([Id]),
+		CONSTRAINT FK_Users_UserRoles FOREIGN KEY REFERENCES dbo.UserRoles([Id]),
 	[Email] NVARCHAR(40) NOT NULL,
 	[Pasword] NVARCHAR(100) NOT NULL
 );

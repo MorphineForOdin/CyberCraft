@@ -21,7 +21,7 @@ CREATE TABLE dbo.ProductValues (
 	[Id] INT NOT NULL IDENTITY(1, 1)
 		CONSTRAINT PK_ProductValue PRIMARY KEY,
 	[AttributeId] INT NOT NULL
-		CONSTRAINT FK_ProductValues_ProductAttributes REFERENCES dbo.ProductAttributes([Id]),
+		CONSTRAINT FK_ProductValues_ProductAttributes FOREIGN KEY REFERENCES dbo.ProductAttributes([Id]),
 	[Value] NVARCHAR(50) NOT NULL
 );
 GO

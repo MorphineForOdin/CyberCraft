@@ -22,7 +22,7 @@ CREATE TABLE dbo.ProductCategories (
 		CONSTRAINT PK_ProductCategories PRIMARY KEY,
 	[Name] NVARCHAR(30) NOT NULL,
 	[ParentId] INT NOT NULL
-		CONSTRAINT FK_ProductCategories_ProductCategories REFERENCES dbo.ProductCategories([Id]),
+		CONSTRAINT FK_ProductCategories_ProductCategories FOREIGN KEY REFERENCES dbo.ProductCategories([Id]),
 	
 	CONSTRAINT CH_ProductCategories_Ids CHECK ([Id] <> [ParentId])
 );
