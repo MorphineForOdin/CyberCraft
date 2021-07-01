@@ -14,9 +14,9 @@ namespace TechMarket.API.Infrastructure.Services
             this._usersRepository = usersRepository;
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(int skip,int take)
         {
-            return this._usersRepository.GetAll();
+            return this._usersRepository.GetAll(skip,take);
         }
 
         public User GetById(int id)

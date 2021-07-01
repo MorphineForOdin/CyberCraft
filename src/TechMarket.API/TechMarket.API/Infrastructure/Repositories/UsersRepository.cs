@@ -11,18 +11,34 @@ namespace TechMarket.API.Infrastructure.Repositories
     public class UsersRepository
     {
         private const string ConnectionString = @"Data Source=DESKTOP-QFEHGCL;Initial Catalog=Ecommerce;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(int skip, int take)
         {
-            return new List<User>
+            try
             {
-                new User { FirstName = "Sviatoslav", LastName = "Malinovskyi" },
-                new User { FirstName = "Yurii", LastName = "Borys" },
-                new User { FirstName = "Vasyl", LastName = "Sviastyn" }
-            };
+                var dtos = new List<UserDto>();
+                using (var connection = new SqlConnection(ConnectionString))
+                using (var command = new SqlCommand("dbo.spProducts_Get", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@Skip", SqlDbType.Int).Value = skip;
+                    command.Parameters.Add("@Take", SqlDbType.Int).Value = take;
+
+                    connection.Open();
+                    using SqlDataReader reader = command.ExecuteReader();
+                    while (reader.HasRows && reader.Read())
+                        dtos.Add(UserDto.MapFrom(reader));
+                }
+
+                return dtos.Select(dto => dto.ToDomainModel());
+            }
+            catch (Exception)
+            {
+                return Enumerable.Empty<User>();
+            }
         }
     
-
-
+          
+    
     public User GetById(int id)
     {
 

@@ -20,9 +20,9 @@ namespace TechMarket.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] int skip, [FromQuery] int take)
         {
-            IEnumerable<User> users = this._usersService.GetAll();
+            IEnumerable<User> users = this._usersService.GetAll(skip,take);
             return base.Ok(new GetUsersResponse { Users = users });
         }
 
