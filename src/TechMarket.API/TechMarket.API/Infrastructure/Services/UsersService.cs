@@ -18,5 +18,10 @@ namespace TechMarket.API.Infrastructure.Services
         {
             return this._usersRepository.GetAll();
         }
+
+        public User GetById(int id)
+        {
+            return this._usersRepository.GetById(id);
+        }
     }
 }
