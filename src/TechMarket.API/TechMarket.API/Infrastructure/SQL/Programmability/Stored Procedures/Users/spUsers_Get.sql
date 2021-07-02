@@ -5,12 +5,12 @@ GO
 IF EXISTS(
     SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
-    WHERE [ROUTINE_NAME] = 'spUsers_GetById'
+    WHERE [ROUTINE_NAME] = 'spUsers_Get'
         AND [ROUTINE_TYPE] = 'PROCEDURE'
         AND [ROUTINE_BODY] = 'SQL'
         AND [SPECIFIC_SCHEMA] = 'dbo')
     BEGIN
-        DROP PROCEDURE dbo.spUsers_GetById;
+        DROP PROCEDURE dbo.spUsers_Get;
     END
 GO
 ------------------------------------------------------------------------------
@@ -19,8 +19,9 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE PROCEDURE dbo.spUsers_GetById
-    @UserId INT
+CREATE PROCEDURE dbo.spUsers_Get
+    @Skip INT,
+    @Take INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -28,9 +29,15 @@ BEGIN
     --=========================================================================
     -- Validation:
     --=========================================================================
-    IF @UserId IS NULL OR @UserId <= 0
+    IF @Skip IS NULL OR @Skip < 0
     BEGIN
-        RAISERROR ('Must pass a valid @UserId parameter.', 11, 1);
+        RAISERROR ('Must pass a valid @Offset', 11, 1);
+        RETURN -1;
+    END
+    
+    IF @Take IS NULL OR @Take <= 0
+    BEGIN
+        RAISERROR ('Must pass a valid @Fetch', 11, 2);
         RETURN -1;
     END
 
@@ -45,7 +52,9 @@ BEGIN
          users.[Email],
          users.[Password]
     FROM dbo.Users AS users
-    WHERE users.[Id] = @UserId;
+    ORDER BY Users.[Id]
+        OFFSET @Skip ROWS
+        FETCH NEXT @Take ROWS ONLY;
 END
 GO
 --==============================================================================
