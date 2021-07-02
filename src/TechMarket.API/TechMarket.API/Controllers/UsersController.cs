@@ -26,7 +26,7 @@ namespace TechMarket.API.Controllers
             return base.Ok(new GetUsersResponse { Users = users });
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public IActionResult GetById([FromRoute] int id)
         {
 

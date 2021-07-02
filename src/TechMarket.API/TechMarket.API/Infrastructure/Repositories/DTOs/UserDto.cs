@@ -26,7 +26,6 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
             };
         }
 
-
         public User ToDomainModel()
         {
             return new User

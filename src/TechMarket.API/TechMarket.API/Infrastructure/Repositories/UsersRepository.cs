@@ -19,7 +19,7 @@ namespace TechMarket.API.Infrastructure.Repositories
             {
                 var dtos = new List<UserDto>();
                 using (var connection = new SqlConnection(ConnectionString))
-                using (var command = new SqlCommand("dbo.spUsers_GetAll", connection))
+                using (var command = new SqlCommand("dbo.spUsers_Get", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@Skip", SqlDbType.Int).Value = skip;
