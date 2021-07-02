@@ -22,7 +22,7 @@ CREATE TABLE dbo.CartProducts (
 		CONSTRAINT FK_CartProducts_Users FOREIGN KEY REFERENCES dbo.Users([Id]),
 	[ProductId] INT NOT NULL
 		CONSTRAINT FK_CartProducts_Products FOREIGN KEY REFERENCES dbo.Products([Id]),
-	[Quantuty] INT NOT NULL
+	[Quantity] INT NOT NULL
 		CONSTRAINT CH_CartProducts_Quantity CHECK ([Quantity] > 0),
 
 	CONSTRAINT PK_CartProducts PRIMARY KEY ([UserId], [ProductId])

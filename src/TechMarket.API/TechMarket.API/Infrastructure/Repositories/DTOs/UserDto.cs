@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+
 using TechMarket.API.Infrastructure.Domain;
 
 namespace TechMarket.API.Infrastructure.Repositories.DTOs
@@ -25,8 +26,10 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
             };
         }
 
+
         public User ToDomainModel()
-            => new User
+        {
+            return new User
             {
                 Id = this.Id,
                 FirstName = this.FirstName,
@@ -35,5 +38,6 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
                 Email = this.Email,
                 Password = this.Password
             };
+        }
     }
 }

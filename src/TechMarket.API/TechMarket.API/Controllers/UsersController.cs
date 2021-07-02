@@ -22,20 +22,21 @@ namespace TechMarket.API.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] int skip, [FromQuery] int take)
         {
-            IEnumerable<User> users = this._usersService.GetAll(skip,take);
+            IEnumerable<User> users = this._usersService.GetAll(skip, take);
             return base.Ok(new GetUsersResponse { Users = users });
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById([FromRoute] int id)
         {
+
             if (id <= 0)
                 return base.BadRequest(new ProblemDetails { Detail = "Not valid user id." });
-            
+
             User user = this._usersService.GetById(id);
             if (user == null)
                 return base.NotFound(new ProblemDetails { Detail = "User was not found." });
-            
+
             return base.Ok(new GetUserResponse { User = user });
         }
     }

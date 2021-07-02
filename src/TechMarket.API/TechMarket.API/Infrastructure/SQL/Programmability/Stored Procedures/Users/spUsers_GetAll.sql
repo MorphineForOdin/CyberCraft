@@ -50,7 +50,7 @@ BEGIN
          users.[LastName],
          users.[RoleId],
          users.[Email],
-         users.[Pasword]
+         users.[Password]
     FROM dbo.Users AS users
     ORDER BY Users.[Id]
         OFFSET @Skip ROWS

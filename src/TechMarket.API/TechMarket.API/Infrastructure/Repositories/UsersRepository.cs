@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+
 using TechMarket.API.Infrastructure.Domain;
 using TechMarket.API.Infrastructure.Repositories.DTOs;
 
@@ -10,14 +11,15 @@ namespace TechMarket.API.Infrastructure.Repositories
 {
     public class UsersRepository
     {
-        private const string ConnectionString = @"Data Source=DESKTOP-QFEHGCL;Initial Catalog=Ecommerce;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private const string ConnectionString = @"Data Source=DESKTOP-QFEHGCL; Initial Catalog = TechMarket; Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
         public IEnumerable<User> GetAll(int skip, int take)
         {
             try
             {
                 var dtos = new List<UserDto>();
                 using (var connection = new SqlConnection(ConnectionString))
-                using (var command = new SqlCommand("dbo.spProducts_Get", connection))
+                using (var command = new SqlCommand("dbo.spUsers_GetAll", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@Skip", SqlDbType.Int).Value = skip;
@@ -36,39 +38,28 @@ namespace TechMarket.API.Infrastructure.Repositories
                 return Enumerable.Empty<User>();
             }
         }
-    
-          
-    
-    public User GetById(int id)
-    {
 
+        public User GetById(int id)
+        {
             try
             {
-
-                var dtos = new List<UserDto>();
                 using (var connection = new SqlConnection(ConnectionString))
-                using (var command = new SqlCommand("spUsers_GetUserById", connection))
+                using (var command = new SqlCommand("spUsers_GetById", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@id", SqlDbType.Int).Value = id;
-
+                    command.Parameters.Add("@UserId", SqlDbType.Int).Value = id;
 
                     connection.Open();
                     using SqlDataReader reader = command.ExecuteReader();
                     if (reader.HasRows && reader.Read())
-                        dtos.Add(UserDto.MapFrom(reader));
+                        return UserDto.MapFrom(reader).ToDomainModel();
                 }
-
-
-                return (User)dtos.Select(dto => dto.ToDomainModel());
+                return null;
             }
-
             catch (Exception)
             {
                 return null;
             }
-           
         }
-        
-}
+    }
 }

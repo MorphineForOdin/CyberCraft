@@ -24,7 +24,7 @@ CREATE TABLE dbo.OrderProducts (
 		CONSTRAINT FK_OrderProducts_Orders FOREIGN KEY REFERENCES dbo.Orders([Id]),
 	[ProductId] INT NOT NULL
 		CONSTRAINT FK_OrderProducts_Products FOREIGN KEY REFERENCES dbo.Products([Id]),
-	[Quantuty] INT NOT NULL
+	[Quantity] INT NOT NULL
 		CONSTRAINT CH_OrderProducts_Quantity CHECK ([Quantity] > 0)
 );
 GO

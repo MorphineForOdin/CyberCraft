@@ -42,7 +42,8 @@ BEGIN
          users.[FirstName],
          users.[LastName],
          users.[RoleId],
-         users.[Email]
+         users.[Email],
+         users.[Password]
     FROM dbo.Users AS users
     WHERE users.[Id] = @UserId;
 END
