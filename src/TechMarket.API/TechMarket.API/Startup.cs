@@ -36,7 +36,8 @@ namespace TechMarket.API
                 .UseEndpoints(endpoints => endpoints.MapControllers());
 
         private IServiceCollection ConfigureCORS(IServiceCollection services)
-            => services
+        {
+            return services
             .AddCors(options => options
             .AddDefaultPolicy(corsPolicyBuilder => corsPolicyBuilder
                 .SetIsOriginAllowed(_ => true)
@@ -44,11 +45,16 @@ namespace TechMarket.API
                 .AllowAnyHeader()
                 .AllowCredentials()
                 .WithExposedHeaders("Content-Disposition")));
+        }
 
         private IServiceCollection RegisterDI(IServiceCollection services)
-            => services
+        {
+            return services
                 .AddSingleton(_ => this._configuration)
                 .AddScoped<UsersRepository>()
-                .AddScoped<UsersService>();
+                .AddScoped<ProductsRepository>()
+                .AddScoped<UsersService>()
+                .AddScoped<ProductsService>();
+        }
     }
 }

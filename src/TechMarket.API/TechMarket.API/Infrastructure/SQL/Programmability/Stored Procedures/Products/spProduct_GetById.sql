@@ -5,12 +5,12 @@ GO
 IF EXISTS(
     SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
-    WHERE [ROUTINE_NAME] = 'spProducts_Get'
+    WHERE [ROUTINE_NAME] = 'spProduct_GetById'
         AND [ROUTINE_TYPE] = 'PROCEDURE'
         AND [ROUTINE_BODY] = 'SQL'
         AND [SPECIFIC_SCHEMA] = 'dbo')
     BEGIN
-        DROP PROCEDURE dbo.spProducts_Get;
+        DROP PROCEDURE dbo.spProduct_GetById;
     END
 GO
 ------------------------------------------------------------------------------
@@ -19,9 +19,8 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE PROCEDURE spProducts_Get
-    @Skip INT,
-    @Take INT
+CREATE PROCEDURE spProduct_GetById
+    @Id INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -29,15 +28,9 @@ BEGIN
     --========================================================================
     -- Validation:
     --========================================================================
-    IF @Skip IS NULL OR @Skip < 0
+    IF @Id IS NULL OR @Id < 0
     BEGIN
-        RAISERROR ('Must pass a valid @Offset', 11, 1);
-        RETURN -1;
-    END
-    
-    IF @Take IS NULL OR @Take <= 0
-    BEGIN
-        RAISERROR ('Must pass a valid @Fetch', 11, 2);
+        RAISERROR ('Must pass a valid @Id', 11, 1);
         RETURN -1;
     END
 
@@ -49,12 +42,22 @@ BEGIN
         products.[CategoryId],
         products.[Name],
         products.[Description],
-		products.[ImageUrl],
+        products.[ImageUrl],
         products.[Price]
     FROM Products AS products
-    ORDER BY Products.[Id]
-        OFFSET @Skip ROWS
-        FETCH NEXT @Take ROWS ONLY;
+    WHERE Id = @Id;
+
+    SELECT
+        attributes.[Id],
+        attributes.[Name],
+        productValues.[Id] AS 'ValueId',
+        productValues.[Value]
+    FROM dbo.ProductsAttributesValues AS attributesValues
+        INNER JOIN dbo.ProductAttributes AS attributes
+            ON attributesValues.[AttributeId] = attributes.[Id]
+		INNER JOIN dbo.ProductValues AS productValues
+            ON attributesValues.[ValueId] = productValues.[Id]
+    WHERE attributesValues.[ProductId] = @Id;
 END
 GO
 --============================================================================
