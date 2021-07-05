@@ -1,6 +1,6 @@
 ﻿namespace TechMarket.API.Infrastructure.Domain
 {
-    public class ProductAttributeValue
+    public class ProductAttribute
     {
         public int Id { get; set; }
         public string Name { get; set; }

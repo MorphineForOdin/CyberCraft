@@ -10,6 +10,6 @@ namespace TechMarket.API.Infrastructure.Domain
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
-        public IEnumerable<ProductAttributeValue> Attributes { get; set; }
+        public IEnumerable<ProductAttribute> Attributes { get; set; }
     }
 }

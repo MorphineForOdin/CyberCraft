@@ -5,12 +5,12 @@ GO
 IF EXISTS(
     SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
-    WHERE [ROUTINE_NAME] = 'spProduct_GetById'
+    WHERE [ROUTINE_NAME] = 'spProducts_GetById'
         AND [ROUTINE_TYPE] = 'PROCEDURE'
         AND [ROUTINE_BODY] = 'SQL'
         AND [SPECIFIC_SCHEMA] = 'dbo')
     BEGIN
-        DROP PROCEDURE dbo.spProduct_GetById;
+        DROP PROCEDURE dbo.spProducts_GetById;
     END
 GO
 ------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE PROCEDURE spProduct_GetById
+CREATE PROCEDURE spProducts_GetById
     @Id INT
 AS
 BEGIN
@@ -28,7 +28,7 @@ BEGIN
     --========================================================================
     -- Validation:
     --========================================================================
-    IF @Id IS NULL OR @Id < 0
+    IF @Id IS NULL OR @Id <= 0
     BEGIN
         RAISERROR ('Must pass a valid @Id', 11, 1);
         RETURN -1;

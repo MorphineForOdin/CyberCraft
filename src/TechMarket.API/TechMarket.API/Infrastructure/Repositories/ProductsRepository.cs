@@ -44,9 +44,9 @@ namespace TechMarket.API.Infrastructure.Repositories
             try
             {
                 Product product = null;
-                var attributes = new List<ProductAttributeValue>();
+                var attributes = new List<ProductAttribute>();
                 using (var connection = new SqlConnection(ConnectionString))
-                using (var command = new SqlCommand("dbo.spProduct_GetById", connection))
+                using (var command = new SqlCommand("dbo.spProducts_GetById", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@Id", SqlDbType.Int).Value = id;

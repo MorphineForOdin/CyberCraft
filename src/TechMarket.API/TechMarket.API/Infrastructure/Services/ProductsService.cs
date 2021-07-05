@@ -22,7 +22,6 @@ namespace TechMarket.API.Infrastructure.Services
         public Product GetById(int id)
         {
             var product = this._productsRepository.GetById(id);
-            //TODO Logic
             return product;
         }
     }

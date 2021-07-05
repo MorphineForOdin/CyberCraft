@@ -26,14 +26,15 @@ namespace TechMarket.API.Controllers
             return base.Ok(new GetProductsResponse { Products = products });
         }
 
-        [HttpGet("{Id:int}")]
-        public IActionResult GetById([FromQuery] int id)
+        [HttpGet("{id:int}")]
+        public IActionResult GetById([FromQuery] int id = 2)
         {
-            //todo Validation
             if (id <= 0)
                 return base.BadRequest(new ProblemDetails { Detail = "Not valid product id." });
 
-            var product = this._productsService.GetById(id);
+            Product product = this._productsService.GetById(id);
+            if (product == null)
+                return base.NotFound(new ProblemDetails { Detail = "Product not found" });
 
             return base.Ok(product);
         }

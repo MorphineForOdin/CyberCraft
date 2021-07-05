@@ -22,9 +22,9 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
             };
         }
 
-        public ProductAttributeValue ToDomainModel()
+        public ProductAttribute ToDomainModel()
         {
-            return new ProductAttributeValue
+            return new ProductAttribute
             {
                 Id = this.Id,
                 Name = this.Name,
