@@ -6,19 +6,25 @@ using System.Linq;
 
 using TechMarket.API.Infrastructure.Domain;
 using TechMarket.API.Infrastructure.Repositories.DTOs;
+using TechMarket.API.Infrastructure.Repositories.Settings;
 
 namespace TechMarket.API.Infrastructure.Repositories
 {
     public class UsersRepository
     {
-        private const string ConnectionString = @"Data Source=DESKTOP-QFEHGCL; Initial Catalog = TechMarket; Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private readonly ITechMarketDbSettings _settings;
+
+        public UsersRepository(ITechMarketDbSettings settings)
+        {
+            this._settings = settings;
+        }
 
         public IEnumerable<User> GetAll(int skip, int take)
         {
             try
             {
                 var dtos = new List<UserDto>();
-                using (var connection = new SqlConnection(ConnectionString))
+                using (var connection = new SqlConnection(this._settings.ConnectionString))
                 using (var command = new SqlCommand("dbo.spUsers_Get", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -43,7 +49,7 @@ namespace TechMarket.API.Infrastructure.Repositories
         {
             try
             {
-                using (var connection = new SqlConnection(ConnectionString))
+                using (var connection = new SqlConnection(this._settings.ConnectionString))
                 using (var command = new SqlCommand("spUsers_GetById", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;

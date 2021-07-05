@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 
 using TechMarket.API.Infrastructure.Common;
 using TechMarket.API.Infrastructure.Repositories;
+using TechMarket.API.Infrastructure.Repositories.Settings;
 using TechMarket.API.Infrastructure.Services;
 
 namespace TechMarket.API
@@ -48,6 +49,7 @@ namespace TechMarket.API
         private IServiceCollection RegisterDI(IServiceCollection services)
             => services
                 .AddSingleton(_ => this._configuration)
+                .AddSingleton<ITechMarketDbSettings>(new TechMarketDbSettings { ConnectionString = this._configuration.GetConnectionString("TechMarketDB") })
                 .AddScoped<UsersRepository>()
                 .AddScoped<UsersService>();
     }
