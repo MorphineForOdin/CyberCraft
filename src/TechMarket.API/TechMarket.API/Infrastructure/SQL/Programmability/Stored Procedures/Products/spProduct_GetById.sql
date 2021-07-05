@@ -55,7 +55,7 @@ BEGIN
     FROM dbo.ProductsAttributesValues AS attributesValues
         INNER JOIN dbo.ProductAttributes AS attributes
             ON attributesValues.[AttributeId] = attributes.[Id]
-		INNER JOIN dbo.ProductValues AS productValues
+        INNER JOIN dbo.ProductValues AS productValues
             ON attributesValues.[ValueId] = productValues.[Id]
     WHERE attributesValues.[ProductId] = @Id;
 END

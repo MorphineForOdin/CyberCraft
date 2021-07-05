@@ -49,7 +49,7 @@ BEGIN
         products.[CategoryId],
         products.[Name],
         products.[Description],
-		products.[ImageUrl],
+        products.[ImageUrl],
         products.[Price]
     FROM Products AS products
     ORDER BY Products.[Id]
