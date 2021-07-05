@@ -20,7 +20,7 @@ namespace TechMarket.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] int skip, [FromQuery] int take)
+        public IActionResult Get([FromQuery] int skip = 0, [FromQuery] int take = 5)
         {
             IEnumerable<Product> products = this._productsService.Get(skip, take);
             return base.Ok(new GetProductsResponse { Products = products });
@@ -29,8 +29,8 @@ namespace TechMarket.API.Controllers
         [HttpGet("categories")]
         public IActionResult Get()
         {
-            IEnumerable<Category> category = this._productsService.GetCategories();
-            return base.Ok(new GetCategoriesResponse { Categories = category });
+            IEnumerable<Category> categories = this._productsService.GetCategories();
+            return base.Ok(new GetCategoriesResponse { Categories = categories });
         }
     }
 }

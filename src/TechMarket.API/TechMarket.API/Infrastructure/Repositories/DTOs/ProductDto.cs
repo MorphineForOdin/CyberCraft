@@ -11,16 +11,23 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public string ImageUrl { get; set; }
 
         public static ProductDto MapFrom(SqlDataReader reader)
         {
             return new ProductDto
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
+
                 CategoryId = reader.GetInt32(reader.GetOrdinal("CategoryId")),
+
                 Name = reader.GetString(reader.GetOrdinal("Name")),
+
                 Description = reader.GetString(reader.GetOrdinal("Name")),
-                Price = reader.GetDecimal(reader.GetOrdinal("Price"))
+
+                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+
+                ImageUrl=reader.GetString(reader.GetOrdinal("ImageUrl"))
             };
         }
         public Product ToDomainModel()
@@ -31,7 +38,8 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
                 CategoryId = this.CategoryId,
                 Name = this.Name,
                 Description = this.Description,
-                Price = this.Price
+                Price = this.Price,
+                ImageUrl=this.ImageUrl
             };
         }
     }

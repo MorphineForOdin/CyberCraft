@@ -49,7 +49,8 @@ BEGIN
         products.[CategoryId],
         products.[Name],
         products.[Description],
-        products.[Price]
+        products.[Price],
+        products.[ImageUrl]
     FROM Products AS products
     ORDER BY Products.[Id]
         OFFSET @Skip ROWS

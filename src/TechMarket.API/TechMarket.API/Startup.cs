@@ -49,8 +49,8 @@ namespace TechMarket.API
             => services
                 .AddSingleton(_ => this._configuration)
                 .AddScoped<UsersRepository>()
-                .AddScoped<UsersService>()
                 .AddScoped<ProductsRepository>()
+                .AddScoped<UsersService>()
                 .AddScoped<ProductsService>();
     }
 }

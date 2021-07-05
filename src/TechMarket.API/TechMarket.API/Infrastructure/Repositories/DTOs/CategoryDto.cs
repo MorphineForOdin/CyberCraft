@@ -17,7 +17,9 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
             return new CategoryDto
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
+
                 Name = reader.GetString(reader.GetOrdinal("Name")),
+
                 ParentId = reader.GetInt32(reader.GetOrdinal("ParentId"))
             };
         }
