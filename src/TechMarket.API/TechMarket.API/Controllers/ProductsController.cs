@@ -36,7 +36,7 @@ namespace TechMarket.API.Controllers
             if (product == null)
                 return base.NotFound(new ProblemDetails { Detail = "Product not found" });
 
-            return base.Ok(product);
+            return base.Ok(new GetProductResponse { Product = product });
         }
     }
 }

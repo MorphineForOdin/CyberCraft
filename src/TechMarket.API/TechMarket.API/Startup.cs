@@ -46,13 +46,12 @@ namespace TechMarket.API
                 .WithExposedHeaders("Content-Disposition")));
 
         private IServiceCollection RegisterDI(IServiceCollection services)
-        {
-            return services
+            => services
                 .AddSingleton(_ => this._configuration)
                 .AddScoped<UsersRepository>()
                 .AddScoped<ProductsRepository>()
                 .AddScoped<UsersService>()
                 .AddScoped<ProductsService>();
-        }
+
     }
 }
