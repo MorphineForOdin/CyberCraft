@@ -51,6 +51,8 @@ namespace TechMarket.API
                 .AddSingleton(_ => this._configuration)
                 .AddSingleton<ITechMarketDbSettings>(new TechMarketDbSettings { ConnectionString = this._configuration.GetConnectionString("TechMarketDB") })
                 .AddScoped<UsersRepository>()
-                .AddScoped<UsersService>();
+                .AddScoped<ProductsRepository>()
+                .AddScoped<UsersService>()
+                .AddScoped<ProductsService>();
     }
 }
