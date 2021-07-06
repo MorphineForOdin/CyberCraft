@@ -34,7 +34,7 @@ namespace TechMarket.API.Controllers
 
             Product product = this._productsService.GetById(id);
             if (product == null)
-                return base.NotFound(new ProblemDetails { Detail = "Product not found" });
+                return base.NotFound(new ProblemDetails { Detail = "Product not found." });
 
             return base.Ok(new GetProductResponse { Product = product });
         }
