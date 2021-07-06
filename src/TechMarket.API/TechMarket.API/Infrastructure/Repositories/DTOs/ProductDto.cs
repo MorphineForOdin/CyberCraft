@@ -18,18 +18,14 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
             return new ProductDto
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
-
                 CategoryId = reader.GetInt32(reader.GetOrdinal("CategoryId")),
-
                 Name = reader.GetString(reader.GetOrdinal("Name")),
-
                 Description = reader.GetString(reader.GetOrdinal("Name")),
-
                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
-
                 ImageUrl=reader.GetString(reader.GetOrdinal("ImageUrl"))
             };
         }
+
         public Product ToDomainModel()
         {
             return new Product
@@ -43,5 +39,4 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
             };
         }
     }
-
 }  

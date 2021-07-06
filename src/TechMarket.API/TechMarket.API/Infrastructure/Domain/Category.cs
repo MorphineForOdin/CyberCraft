@@ -6,6 +6,6 @@
 
         public string Name { get; set; }
 
-        public int? ParentId { get; set; } = null;
+        public int? ParentId { get; set; }
     }
 }

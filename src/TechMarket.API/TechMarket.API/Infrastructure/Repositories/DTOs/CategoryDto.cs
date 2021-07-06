@@ -10,17 +10,15 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
 
         public string Name { get; set; }
 
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         public static CategoryDto MapFrom(SqlDataReader reader)
         {
             return new CategoryDto
             {
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
-
                 Name = reader.GetString(reader.GetOrdinal("Name")),
-
-                ParentId = reader.GetInt32(reader.GetOrdinal("ParentId"))
+                ParentId = reader.IsDBNull(reader.GetOrdinal("ParentId")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("ParentId"))
             };
         }
 
