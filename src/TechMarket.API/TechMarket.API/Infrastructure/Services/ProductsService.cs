@@ -21,8 +21,7 @@ namespace TechMarket.API.Infrastructure.Services
 
         public Product GetById(int id)
         {
-            var product = this._productsRepository.GetById(id);
-            return product;
+            return this._productsRepository.GetById(id);
         }
     }
 }

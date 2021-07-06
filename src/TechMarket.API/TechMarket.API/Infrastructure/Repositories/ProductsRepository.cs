@@ -44,7 +44,7 @@ namespace TechMarket.API.Infrastructure.Repositories
             try
             {
                 Product product = null;
-                var attributes = new List<ProductAttribute>();
+                var attributes = new List<ProductAttributeValueDto>();
                 using (var connection = new SqlConnection(ConnectionString))
                 using (var command = new SqlCommand("dbo.spProducts_GetById", connection))
                 {
@@ -60,9 +60,20 @@ namespace TechMarket.API.Infrastructure.Repositories
 
                     if (reader.NextResult())
                         while (reader.HasRows && reader.Read())
-                            attributes.Add(ProductAttributeValueDto.MapFrom(reader).ToDomainModel());
+                            attributes.Add(ProductAttributeValueDto.MapFrom(reader));
 
-                    product.Attributes = attributes;
+                    product.Attributes = attributes.GroupBy(
+                        keySelector: attribute => attribute.Id,
+                        resultSelector: (id, attributes) => new ProductAttribute
+                        {
+                            Id = id,
+                            Name = attributes.First().Name,
+                            Values = attributes.Select(a => new IdValuePair
+                            {
+                                Id = a.ValueId,
+                                Value = a.Value
+                            })
+                        });
                 }
 
                 return product;

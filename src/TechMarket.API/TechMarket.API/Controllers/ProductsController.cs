@@ -27,7 +27,7 @@ namespace TechMarket.API.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetById([FromQuery] int id = 2)
+        public IActionResult GetById([FromRoute] int id)
         {
             if (id <= 0)
                 return base.BadRequest(new ProblemDetails { Detail = "Not valid product id." });

@@ -1,7 +1,5 @@
 ﻿using System.Data.SqlClient;
 
-using TechMarket.API.Infrastructure.Domain;
-
 namespace TechMarket.API.Infrastructure.Repositories.DTOs
 {
     public class ProductAttributeValueDto
@@ -19,17 +17,6 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
                 Name = reader.GetString(reader.GetOrdinal("Name")),
                 ValueId = reader.GetInt32(reader.GetOrdinal("ValueId")),
                 Value = reader.GetString(reader.GetOrdinal("Value"))
-            };
-        }
-
-        public ProductAttribute ToDomainModel()
-        {
-            return new ProductAttribute
-            {
-                Id = this.Id,
-                Name = this.Name,
-                Value = this.Value,
-                ValueId = this.ValueId
             };
         }
     }

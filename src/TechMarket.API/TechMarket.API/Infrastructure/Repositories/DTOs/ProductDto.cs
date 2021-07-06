@@ -13,7 +13,6 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
-        public IEnumerable<ProductAttributeValueDto> Properties { get; set; }
 
         public static ProductDto MapFrom(SqlDataReader reader)
         {
