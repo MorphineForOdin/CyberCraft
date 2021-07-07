@@ -20,10 +20,23 @@ namespace TechMarket.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] int skip = 0, [FromQuery] int take = 5)
+        public IActionResult Get([FromQuery] int skip = 0, [FromQuery] int take = 12)
         {
             IEnumerable<Product> products = this._productsService.Get(skip, take);
             return base.Ok(new GetProductsResponse { Products = products });
+        }
+
+        [HttpGet("{id:int}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            if (id <= 0)
+                return base.BadRequest(new ProblemDetails { Detail = "Not valid product id." });
+
+            Product product = this._productsService.GetById(id);
+            if (product == null)
+                return base.NotFound(new ProblemDetails { Detail = "Product not found." });
+
+            return base.Ok(new GetProductResponse { Product = product });
         }
 
         [HttpGet("categories")]

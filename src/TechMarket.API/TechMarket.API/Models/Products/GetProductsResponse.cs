@@ -13,6 +13,5 @@ namespace TechMarket.API.Models.Products
         {
             this.Products = Enumerable.Empty<Product>();
         }
-
     }
 }

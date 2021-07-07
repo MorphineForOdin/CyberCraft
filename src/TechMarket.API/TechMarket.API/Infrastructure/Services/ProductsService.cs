@@ -20,6 +20,11 @@ namespace TechMarket.API.Infrastructure.Services
             return this._productsRepository.Get(skip, take);
         }
 
+        public Product GetById(int id)
+        {
+            return this._productsRepository.GetById(id);
+        }
+
         public IEnumerable<Category> GetCategories()
         {
             return this._productsRepository.GetCategories();
