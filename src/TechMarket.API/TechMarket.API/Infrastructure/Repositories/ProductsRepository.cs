@@ -6,19 +6,25 @@ using System.Linq;
 
 using TechMarket.API.Infrastructure.Domain;
 using TechMarket.API.Infrastructure.Repositories.DTOs;
+using TechMarket.API.Infrastructure.Repositories.Settings;
 
 namespace TechMarket.API.Infrastructure.Repositories
 {
     public class ProductsRepository
     {
-        private const string ConnectionString = @"Data Source=DESKTOP-QFEHGCL; Initial Catalog = TechMarket; Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private readonly ITechMarketDbSettings _settings;
+
+        public ProductsRepository(ITechMarketDbSettings settings)
+        {
+            this._settings = settings;
+        }
 
         public IEnumerable<Product> Get(int skip, int take)
         {
             try
             {
                 var dtos = new List<ProductDto>();
-                using (var connection = new SqlConnection(ConnectionString))
+                using (var connection = new SqlConnection(this._settings.ConnectionString))
                 using (var command = new SqlCommand("dbo.spProducts_Get", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
@@ -39,12 +45,57 @@ namespace TechMarket.API.Infrastructure.Repositories
             }
         }
 
+        public Product GetById(int id)
+        {
+            try
+            {
+                Product product = null;
+                var attributes = new List<ProductAttributeValueDto>();
+                using (var connection = new SqlConnection(this._settings.ConnectionString))
+                using (var command = new SqlCommand("dbo.spProducts_GetById", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                    connection.Open();
+                    using SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows && reader.Read())
+                        product = ProductDto.MapFrom(reader).ToDomainModel();
+
+                    if (product == null) return null;
+
+                    if (reader.NextResult())
+                        while (reader.HasRows && reader.Read())
+                            attributes.Add(ProductAttributeValueDto.MapFrom(reader));
+
+                    product.Attributes = attributes.GroupBy(
+                        keySelector: attribute => attribute.Id,
+                        resultSelector: (id, attributes) => new ProductAttribute
+                        {
+                            Id = id,
+                            Name = attributes.First().Name,
+                            Values = attributes.Select(a => new IdValuePair
+                            {
+                                Id = a.ValueId,
+                                Value = a.Value
+                            })
+                        });
+                }
+
+                return product;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public IEnumerable<Category> GetCategories()
         {
             try
             {
                 var dtos = new List<CategoryDto>();
-                using (var connection = new SqlConnection(ConnectionString))
+                using (var connection = new SqlConnection(this._settings.ConnectionString))
                 using (var command = new SqlCommand("dbo.spProducts_GetCategoriesAll", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
