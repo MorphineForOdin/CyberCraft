@@ -45,6 +45,51 @@ namespace TechMarket.API.Infrastructure.Repositories
             }
         }
 
+        public Product GetById(int id)
+        {
+            try
+            {
+                Product product = null;
+                var attributes = new List<ProductAttributeValueDto>();
+                using (var connection = new SqlConnection(this._settings.ConnectionString))
+                using (var command = new SqlCommand("dbo.spProducts_GetById", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                    connection.Open();
+                    using SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows && reader.Read())
+                        product = ProductDto.MapFrom(reader).ToDomainModel();
+
+                    if (product == null) return null;
+
+                    if (reader.NextResult())
+                        while (reader.HasRows && reader.Read())
+                            attributes.Add(ProductAttributeValueDto.MapFrom(reader));
+
+                    product.Attributes = attributes.GroupBy(
+                        keySelector: attribute => attribute.Id,
+                        resultSelector: (id, attributes) => new ProductAttribute
+                        {
+                            Id = id,
+                            Name = attributes.First().Name,
+                            Values = attributes.Select(a => new IdValuePair
+                            {
+                                Id = a.ValueId,
+                                Value = a.Value
+                            })
+                        });
+                }
+
+                return product;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public IEnumerable<Category> GetCategories()
         {
             try
