@@ -15,9 +15,9 @@ namespace TechMarket.API
         {
             return this._cartRepository.Insert(userId, productId, quantity);
         }
-        public bool Put(int userId, int productId, int quantity)
+        public bool Update(int userId, int productId, int quantity)
         {
-            return this._cartRepository.Put(userId, productId, quantity);
+            return this._cartRepository.Update(userId, productId, quantity);
         }
 
         public bool Delete(int userId, int productId)

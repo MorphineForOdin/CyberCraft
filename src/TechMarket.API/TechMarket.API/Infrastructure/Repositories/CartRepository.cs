@@ -39,7 +39,7 @@ namespace TechMarket.API.Infrastructure.Repositories
             }
         }
 
-        public bool Put(int userId, int productId, int quantity)
+        public bool Update(int userId, int productId, int quantity)
         {
             try
             {

@@ -9,8 +9,5 @@ namespace TechMarket.API.Models.Cart
 
         [Required]
         public int ProductId { get; set; }
-
-        [Required]
-        public int Quantity { get; set; }
     }
 }

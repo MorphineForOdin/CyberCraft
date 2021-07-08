@@ -21,19 +21,19 @@ namespace TechMarket.API.Controllers
             bool insertResult = this._cartService.Insert(request.UserId, request.ProductId, request.Quantity);
             if (!insertResult)
             {
-                return base.UnprocessableEntity(new ProblemDetails { Detail = "" });
+                return base.UnprocessableEntity(new ProblemDetails { Detail = "Fail to insert product" });
             }
 
             return base.NoContent();
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] PutCartRequest request)
+        public IActionResult Update([FromBody] UpdateCartRequest request)
         {
-            bool putResult = this._cartService.Put(request.UserId, request.ProductId, request.Quantity);
-            if (!putResult)
+            bool updateResult = this._cartService.Update(request.UserId, request.ProductId, request.Quantity);
+            if (!updateResult)
             {
-                return base.UnprocessableEntity(new ProblemDetails { Detail = "" });
+                return base.UnprocessableEntity(new ProblemDetails { Detail = "Fail to update product" });
             }
 
             return base.NoContent();
@@ -42,10 +42,10 @@ namespace TechMarket.API.Controllers
         [HttpDelete]
         public IActionResult Delete([FromBody] DeleteCartRequest request)
         {
-            bool putResult = this._cartService.Delete(request.UserId, request.ProductId);
-            if (!putResult)
+            bool deleteResult = this._cartService.Delete(request.UserId, request.ProductId);
+            if (!deleteResult)
             {
-                return base.UnprocessableEntity(new ProblemDetails { Detail = "" });
+                return base.UnprocessableEntity(new ProblemDetails { Detail = "Fail to delete product" });
             }
 
             return base.NoContent();

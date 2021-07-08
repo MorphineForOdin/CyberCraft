@@ -55,9 +55,9 @@ BEGIN
 
 --========================================================================
 -- Return:
---========================================================================
+--======================================================================== 
     UPDATE dbo.CartProducts
-    SET [Quantity]=Quantity+@Quantity
+    SET [Quantity]=@Quantity
     WHERE UserId=@UserId
         AND ProductId=@ProductId;
     END
