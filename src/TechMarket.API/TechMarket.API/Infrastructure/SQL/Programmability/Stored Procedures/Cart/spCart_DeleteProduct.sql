@@ -22,50 +22,49 @@ GO
 CREATE PROCEDURE spCart_DeleteProduct
     @UserId INT,
     @ProductId INT
-
 AS
 BEGIN
     SET NOCOUNT ON;
 
---=========================================================================
+--============================================================================
 -- Validation:
---=========================================================================
-IF @UserId <= 0 AND @ProductId <= 0 
+--============================================================================
+ IF @UserId <= 0 
     BEGIN
-        RAISERROR ('Must pass a valid data', 11, 1);
+        RAISERROR ('Must pass a valid user id', 11, 1);
+        RETURN -1;
+    END
+    
+    IF @ProductId <= 0 
+    BEGIN
+        RAISERROR ('Must pass a valid product id', 11, 1);
         RETURN -1;
     END
 
     IF NOT EXISTS (
-        SELECT *
+        SELECT 1
         FROM dbo.Users
         WHERE [Id]=@UserId )
     BEGIN
-        RAISERROR ('Data UserId=@UserId not found', 11, 2);
+        RAISERROR ('User was not found', 11, 2);
         RETURN -1;
     END
 
      IF NOT EXISTS (
-        SELECT *
+        SELECT 1
         FROM dbo.Products
         WHERE [Id]=@ProductId )
     BEGIN
-        RAISERROR ('Data UserId=@ProductId not found', 11, 2);
+        RAISERROR ('Product was not found', 11, 2);
         RETURN -1;
     END
 
 --========================================================================
--- Return:
+-- Delete:
 --========================================================================
-    IF EXISTS (
-    SELECT * 
-    FROM dbo.CartProducts WHERE UserId=@UserId
-        AND ProductId=@ProductId)
-    BEGIN
     DELETE dbo.CartProducts
     WHERE UserId=@UserId
-        AND ProductId=@ProductId;
-    END
+        AND ProductId=@ProductId;    
 END
 GO
 --============================================================================

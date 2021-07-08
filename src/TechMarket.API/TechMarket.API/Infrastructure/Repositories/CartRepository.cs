@@ -62,6 +62,7 @@ namespace TechMarket.API.Infrastructure.Repositories
                 return false;
             }
         }
+
         public bool Delete(int userId, int productId)
         {
             try

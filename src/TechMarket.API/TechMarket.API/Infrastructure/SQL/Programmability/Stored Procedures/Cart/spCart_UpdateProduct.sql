@@ -29,38 +29,49 @@ BEGIN
 --=========================================================================
 -- Validation:
 --=========================================================================
-    IF @UserId <= 0 AND @ProductId <= 0 AND @Quantity <= 0
+    IF @UserId <= 0 
     BEGIN
-        RAISERROR ('Must pass a valid data', 11, 1);
+        RAISERROR ('Must pass a valid user id', 11, 1);
         RETURN -1;
     END
     
+    IF @ProductId <= 0 
+    BEGIN
+        RAISERROR ('Must pass a valid product id', 11, 1);
+        RETURN -1;
+    END
+
+      
+    IF @Quantity <= 0
+    BEGIN
+        RAISERROR ('Must pass a valid quantity', 11, 1);
+        RETURN -1;
+    END
+
     IF NOT EXISTS (
-        SELECT *
+        SELECT 1
         FROM dbo.Users
         WHERE [Id]=@UserId )
     BEGIN
-        RAISERROR ('Data UserId=@UserId not found', 11, 2);
+        RAISERROR ('User was not found', 11, 2);
         RETURN -1;
     END
 
      IF NOT EXISTS (
-        SELECT *
+        SELECT 1
         FROM dbo.Products
         WHERE [Id]=@ProductId )
     BEGIN
-        RAISERROR ('Data UserId=@ProductId not found', 11, 2);
+        RAISERROR ('Product was not found', 11, 2);
         RETURN -1;
     END
-
 --========================================================================
--- Return:
+-- Update:
 --======================================================================== 
     UPDATE dbo.CartProducts
     SET [Quantity]=@Quantity
     WHERE UserId=@UserId
         AND ProductId=@ProductId;
     END
-
 GO
 --============================================================================

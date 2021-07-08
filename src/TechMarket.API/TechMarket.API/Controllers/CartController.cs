@@ -21,7 +21,7 @@ namespace TechMarket.API.Controllers
             bool insertResult = this._cartService.Insert(request.UserId, request.ProductId, request.Quantity);
             if (!insertResult)
             {
-                return base.UnprocessableEntity(new ProblemDetails { Detail = "Fail to insert product" });
+                return base.UnprocessableEntity(new ProblemDetails { Detail = "Failed to add product to the cart." });
             }
 
             return base.NoContent();
@@ -33,7 +33,7 @@ namespace TechMarket.API.Controllers
             bool updateResult = this._cartService.Update(request.UserId, request.ProductId, request.Quantity);
             if (!updateResult)
             {
-                return base.UnprocessableEntity(new ProblemDetails { Detail = "Fail to update product" });
+                return base.UnprocessableEntity(new ProblemDetails { Detail = "Failed to update the cart product quantity." });
             }
 
             return base.NoContent();
@@ -45,7 +45,7 @@ namespace TechMarket.API.Controllers
             bool deleteResult = this._cartService.Delete(request.UserId, request.ProductId);
             if (!deleteResult)
             {
-                return base.UnprocessableEntity(new ProblemDetails { Detail = "Fail to delete product" });
+                return base.UnprocessableEntity(new ProblemDetails { Detail = "Failed to remove product from the cart" });
             }
 
             return base.NoContent();
