@@ -5,10 +5,10 @@ GO
 IF EXISTS(
 	SELECT *
 	FROM sys.tables
-	WHERE name = 'Addresses'
+	WHERE name = 'UsersAddresses'
 		AND SCHEMA_NAME(schema_id) = 'dbo')
 	BEGIN
-		DROP TABLE dbo.Addresses;
+		DROP TABLE dbo.UsersAddresses;
 	END
 GO
 ------------------------------------------------------------------------------
@@ -17,13 +17,14 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE TABLE dbo.Addresses (
-	[Id] INT NOT NULL IDENTITY(1, 1)
-		CONSTRAINT PK_Addresses PRIMARY KEY,
-	[Country] NVARCHAR(30) NOT NULL,
-	[City] NVARCHAR(30) NOT NULL,
-	[Address] NVARCHAR(100) NOT NULL,
-	[ContactInfo] NVARCHAR(100) NOT NULL
+CREATE TABLE dbo.UsersAddresses(
+	[UserId] INT NOT NULL
+		CONSTRAINT FK_UsersAddresses_Users FOREIGN KEY REFERENCES dbo.Users([Id]),
+	[AddressId] INT NOT NULL
+		CONSTRAINT FK_UsersAddresses_Addresses FOREIGN KEY REFERENCES dbo.Addresses([Id]),
+	[Name] NVARCHAR(50) NOT NULL,
+
+	CONSTRAINT PK_UsersAddresses PRIMARY KEY([UserId], [AddressId])
 );
 GO
 --============================================================================
