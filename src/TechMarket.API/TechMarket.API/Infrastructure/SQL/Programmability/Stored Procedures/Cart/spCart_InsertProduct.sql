@@ -41,7 +41,6 @@ BEGIN
         RAISERROR ('Must pass a valid product id', 11, 1);
         RETURN -1;
     END
-
       
     IF @Quantity <= 0
     BEGIN
