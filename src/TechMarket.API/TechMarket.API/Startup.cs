@@ -52,7 +52,9 @@ namespace TechMarket.API
                 .AddSingleton<ITechMarketDbSettings>(new TechMarketDbSettings { ConnectionString = this._configuration.GetConnectionString("TechMarketDB") })
                 .AddScoped<UsersRepository>()
                 .AddScoped<ProductsRepository>()
+                .AddScoped<CartRepository>()
                 .AddScoped<UsersService>()
-                .AddScoped<ProductsService>();
+                .AddScoped<ProductsService>()
+                .AddScoped<CartService>();
     }
 }
