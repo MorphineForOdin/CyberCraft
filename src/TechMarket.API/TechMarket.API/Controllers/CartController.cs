@@ -45,7 +45,7 @@ namespace TechMarket.API.Controllers
             bool deleteResult = this._cartService.Delete(request.UserId, request.ProductId);
             if (!deleteResult)
             {
-                return base.UnprocessableEntity(new ProblemDetails { Detail = "Failed to remove product from the cart" });
+                return base.UnprocessableEntity(new ProblemDetails { Detail = "Failed to remove product from the cart." });
             }
 
             return base.NoContent();

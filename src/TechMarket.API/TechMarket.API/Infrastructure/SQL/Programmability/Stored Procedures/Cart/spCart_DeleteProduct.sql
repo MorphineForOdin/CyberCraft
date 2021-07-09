@@ -26,45 +26,39 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
---============================================================================
--- Validation:
---============================================================================
- IF @UserId <= 0 
+    --============================================================================
+    -- Validation:
+    --============================================================================
+    IF @UserId <= 0
     BEGIN
-        RAISERROR ('Must pass a valid user id', 11, 1);
+        RAISERROR ('Must pass a valid user id.', 11, 1);
         RETURN -1;
     END
     
     IF @ProductId <= 0 
     BEGIN
-        RAISERROR ('Must pass a valid product id', 11, 1);
+        RAISERROR ('Must pass a valid product id.', 11, 2);
         RETURN -1;
     END
 
-    IF NOT EXISTS (
-        SELECT 1
-        FROM dbo.Users
-        WHERE [Id]=@UserId )
+    IF NOT EXISTS (SELECT 1 FROM dbo.Users WHERE [Id] = @UserId)
     BEGIN
-        RAISERROR ('User was not found', 11, 2);
+        RAISERROR ('User was not found.', 11, 3);
         RETURN -1;
     END
 
-     IF NOT EXISTS (
-        SELECT 1
-        FROM dbo.Products
-        WHERE [Id]=@ProductId )
+     IF NOT EXISTS (SELECT 1 FROM dbo.Products WHERE [Id] = @ProductId)
     BEGIN
-        RAISERROR ('Product was not found', 11, 2);
+        RAISERROR ('Product was not found.', 11, 4);
         RETURN -1;
     END
 
---========================================================================
--- Delete:
---========================================================================
+    --========================================================================
+    -- Delete:
+    --========================================================================
     DELETE dbo.CartProducts
-    WHERE UserId=@UserId
-        AND ProductId=@ProductId;    
+    WHERE UserId = @UserId
+        AND ProductId = @ProductId;    
 END
 GO
 --============================================================================
