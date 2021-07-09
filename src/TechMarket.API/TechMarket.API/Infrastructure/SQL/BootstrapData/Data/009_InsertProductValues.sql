@@ -5,7 +5,8 @@ GO
 SET IDENTITY_INSERT dbo.ProductValues ON;
 --============================================================================
 MERGE dbo.ProductValues AS target
-    USING (VALUES 
+    USING (
+        VALUES 
             (1, 1, 'Silver'),
             (2, 1, 'Black'),
             (3, 1, 'White'),
@@ -40,21 +41,13 @@ MERGE dbo.ProductValues AS target
             (32, 5, '8GPU'),
             (33, 5, 'IntelCore i7'),
             (34, 5, 'IntelCore i9')) 
-            AS source ([Id], [AttributeId], [Value])
+        AS source ([Id], [AttributeId], [Value])
     ON (target.[Id] = source.[Id])
     WHEN MATCHED
-        THEN UPDATE SET 
-            target.[AttributeId] = source.[AttributeId],
-            target.[Value] = source.[Value]
+        THEN UPDATE SET target.[AttributeId] = source.[AttributeId], target.[Value] = source.[Value]
     WHEN NOT MATCHED BY target
-        THEN INSERT (
-            [Id],
-            [AttributeId],
-            [Value])
-        VALUES (
-            source.[Id],
-            source.[AttributeId],
-            source.[Value])
+        THEN INSERT ([Id], [AttributeId], [Value])
+        VALUES (source.[Id], source.[AttributeId], source.[Value])
     WHEN NOT MATCHED BY source
         THEN DELETE;
 ------------------------------------------------------------------------------

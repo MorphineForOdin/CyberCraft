@@ -3,7 +3,8 @@ USE TechMarket;
 GO
 --============================================================================
 MERGE dbo.ProductsAttributesValues AS target
-    USING (VALUES 
+    USING (
+        VALUES 
             (1, 1, 1),
             (1, 2, 8),
             (1, 4, 25),
@@ -96,21 +97,13 @@ MERGE dbo.ProductsAttributesValues AS target
             (25, 1, 7),
             (25, 2, 20),
             (25, 4, 26)) 
-            AS source ([ProductId], [AttributeId], [ValueId])
+        AS source ([ProductId], [AttributeId], [ValueId])
     ON (target.[ProductId] = source.[ProductId])
     WHEN MATCHED
-        THEN UPDATE SET 
-            target.[AttributeId] = source.[AttributeId],
-            target.[ValueId] = source.[ValueId]
+        THEN UPDATE SET target.[AttributeId] = source.[AttributeId], target.[ValueId] = source.[ValueId]
     WHEN NOT MATCHED BY target
-        THEN INSERT (
-            [ProductId],
-            [AttributeId],
-            [ValueId])
-        VALUES (
-            source.[ProductId],
-            source.[AttributeId],
-            source.[ValueId])
+        THEN INSERT ([ProductId], [AttributeId], [ValueId])
+        VALUES (source.[ProductId], source.[AttributeId], source.[ValueId])
     WHEN NOT MATCHED BY source
         THEN DELETE;
 --============================================================================

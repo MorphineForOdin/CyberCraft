@@ -5,14 +5,15 @@ GO
 SET IDENTITY_INSERT dbo.Addresses ON;
 --============================================================================
 MERGE dbo.Addresses AS target
-    USING (VALUES 
+    USING (
+        VALUES 
             (1, 'Ukraine', 'Lviv', 'Masaryka street', 'house 14, entrance 1, apartment 43'),
             (2, 'Ukraine', 'Lviv', 'Kopernyka street', 'house 20, entrance 1, apartment 25'),
             (3, 'Ukraine', 'Lviv', 'Yosypa Slipogo street', 'house 7, entrance 1, apartment 401'),
             (4, 'Ukraine', 'Lviv', 'Gorodotska street', 'house 280'),
             (5, 'Ukraine', 'Lviv', 'Stryiska street', 'house 109'),
             (6, 'Ukraine', 'Lviv', 'Zelena street', 'house 283')) 
-            AS source ([Id], [Country], [City], [Address], [ContactInfo])
+        AS source ([Id], [Country], [City], [Address], [ContactInfo])
     ON (target.[Id] = source.[Id])
     WHEN MATCHED
         THEN UPDATE SET

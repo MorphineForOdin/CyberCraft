@@ -5,11 +5,12 @@ GO
 SET IDENTITY_INSERT dbo.Users ON;
 --============================================================================
 MERGE dbo.Users AS target
-    USING (VALUES 
+    USING (
+        VALUES 
             (1, 'Vasyl', 'Sviastyn', 2, 'vs@gmail.com', 'pass111'),
             (2, 'Yurii', 'Borys', 2, 'yb@gmail.com', 'pass222'),
             (3, 'Sviatoslav', 'Malinovskyi', 1, 'sm@gmail.com', 'pass333')) 
-            AS source ([Id], [FirstName], [LastName], [RoleId], [Email], [Password])
+        AS source ([Id], [FirstName], [LastName], [RoleId], [Email], [Password])
     ON (target.[Id] = source.[Id])
     WHEN MATCHED
         THEN UPDATE SET
