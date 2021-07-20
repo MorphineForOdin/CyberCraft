@@ -7,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+    menuOpened: boolean = true;
+    authenticated: boolean = true;
+
     constructor() { }
 
     ngOnInit(): void { }
+
+    testAuth() {
+        this.authenticated = !this.authenticated
+    }
+
+    burgerClick() {
+        this.menuOpened = !this.menuOpened;
+    }
 }
