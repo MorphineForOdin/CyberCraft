@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models';
-import { UsersService } from 'src/app/services';
+import { SliderImage } from 'src/app/models';
+import { WebsiteService } from 'src/app/services';
 
 @Component({
     selector: 'tm-landing',
@@ -9,13 +9,13 @@ import { UsersService } from 'src/app/services';
 })
 export class LandingComponent implements OnInit {
 
-    users: User[] = <User[]>[];
+    sliderImages: SliderImage[] = <SliderImage[]>[];
 
-    constructor(private _usersService: UsersService) { }
+    constructor(private _websiteService: WebsiteService) { }
 
     ngOnInit(): void {
-        this._usersService
-            .getAll()
-            .subscribe(users => this.users = users);
+        this._websiteService
+            .getSliderImages()
+            .subscribe(images => this.sliderImages = images);
     }
 }

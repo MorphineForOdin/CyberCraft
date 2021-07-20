@@ -1,0 +1,10 @@
+<div class="carousel-inner" role="listbox">
+    <a href="{{  getSlideLink() }}">
+    <img src="{{ getSlide() }}" alt="slide" >
+    </a>
+</div>
+
+<button class='button-prev' *ngIf="images.length > 1" (click)='getPrev()'>Prev</button>
+<button class='button-next' *ngIf="images.length > 1" (click)='getNext()'>Next</button>
+
+

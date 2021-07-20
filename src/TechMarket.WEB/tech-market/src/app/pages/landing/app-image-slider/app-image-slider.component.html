@@ -1,0 +1,19 @@
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+    <div class="carousel-inner" role="listbox">
+        <img src="{{ getSlide() }}" alt="slide">
+    </div>
+
+    <button (click)='getPrev()'>Prev</button>
+
+    <button (click)='getNext()'>Next</button>
+
+</div>
+
+
+
+<div *ngFor="let image of images">
+    <a [attr.href]="image.linkUrl">
+        <img [attr.src]="image.imageUrl" />
+    </a>
+</div>
