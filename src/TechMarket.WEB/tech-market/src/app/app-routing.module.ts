@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
-    { path: '', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) },
     { path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule) },
-    { path: 'cart', loadChildren: () => import('./pages/cart/cart.module').then(m => m.CartModule) }
+    { path: 'cart', loadChildren: () => import('./pages/cart/cart.module').then(m => m.CartModule) },
+    { path: '', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) }
 ];
 
 @NgModule({

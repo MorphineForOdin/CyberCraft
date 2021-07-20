@@ -29,7 +29,6 @@ namespace TechMarket.API.Infrastructure.Services
         public IEnumerable<Category> GetCategories()
         {
             return this._productsRepository.GetCategories();
-        }              
-
+        }
     }
 }
