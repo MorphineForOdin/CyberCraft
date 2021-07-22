@@ -6,11 +6,11 @@ import { SliderImage } from 'src/app/models';
     templateUrl: './slider.component.html',
     styleUrls: ['./slider.component.scss']
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent{
 
     @Input() images: SliderImage[] = <SliderImage[]>[];
 
-    i=0;
+    i : number = 0;
 
   getSlide() {
     return this.images[this.i].imageUrl;
@@ -26,9 +26,5 @@ export class SliderComponent implements OnInit {
 
   getNext() {
     this.i = this.i === this.images.length - 1 ? this.i : this.i + 1;
-    }
-
-  ngOnInit() {
-    this.i = 0;
     }
 }
