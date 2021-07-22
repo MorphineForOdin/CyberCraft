@@ -1,0 +1,33 @@
+.button-prev,
+.button-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: #0d0d0d;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .button-next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .button-prev:hover,
+  .button-next:hover {
+    background-color: #0d0d0d;
+    color: #f2f2f2;
+  }
+
+  .carousel-inner {
+    width: 100%;
+    object-fit: scale-down;;
+  }
+
+  img {
+    width: 100%;
+  }
