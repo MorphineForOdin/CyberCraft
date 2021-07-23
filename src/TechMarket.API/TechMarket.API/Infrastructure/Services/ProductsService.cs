@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using TechMarket.API.Infrastructure.Domain;
 using TechMarket.API.Infrastructure.Repositories;
@@ -16,7 +17,7 @@ namespace TechMarket.API.Infrastructure.Services
         }
 
         public IEnumerable<Product> Get(int skip, int take)
-        { 
+        {
             return this._productsRepository.Get(skip, take);
         }
 

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LandingModule } from './pages/landing/landing.module';
 import { LoginModule } from './pages/login/login.module';
+import { ProductsModule } from './pages/products/products.module';
+import { CartModule } from './pages/cart/cart.module';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,9 @@ import { LoginModule } from './pages/login/login.module';
         CoreModule,
         LandingModule,
         LoginModule,
-        HttpClientModule,
+        ProductsModule,
+        CartModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [

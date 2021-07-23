@@ -1,1 +1,25 @@
-<div>Header would be implemented soon...</div>
+<div class="header-container">
+    <div class="header-responsive">
+        <div class="logo">
+            <a href=" ">Tech Market</a>
+        </div>
+
+        <button class="burger-button" (click)="burgerClick()">
+            <i>=</i>
+        </button>
+    </div>
+
+    <div *ngIf="menuOpened" class="header-links">
+        <div class="nav-links">
+            <a href="/products">Products</a>
+            <a>Search</a>
+        </div>
+
+        <div class="action-links">
+            <a *ngIf="!authenticated" href="/login">Login</a>
+            <a *ngIf="authenticated">Account</a>
+            <a *ngIf="authenticated" href="/cart">Cart</a>
+            <a *ngIf="authenticated">Logout</a>
+        </div>
+    </div>
+</div>

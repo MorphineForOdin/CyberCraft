@@ -1,6 +1,6 @@
 ﻿using TechMarket.API.Infrastructure.Repositories;
 
-namespace TechMarket.API
+namespace TechMarket.API.Infrastructure.Services
 {
     public class CartService
     {
