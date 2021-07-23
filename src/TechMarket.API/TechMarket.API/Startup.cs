@@ -57,6 +57,7 @@ namespace TechMarket.API
                 .AddScoped<UsersService>()
                 .AddScoped<ProductsService>()
                 .AddScoped<WebsiteService>()
+                .AddScoped<AuthService>()
                 .AddScoped<CartService>();
     }
 }

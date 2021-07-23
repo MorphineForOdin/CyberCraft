@@ -14,6 +14,11 @@ namespace TechMarket.API.Infrastructure.Services
             this._usersRepository = usersRepository;
         }
 
+        //public UsersService()
+        //{
+        //    this._usersRepository = new UsersRepository();
+        //}
+
         public IEnumerable<User> GetAll(int skip, int take)
         {
             return this._usersRepository.GetAll(skip, take);
@@ -22,6 +27,11 @@ namespace TechMarket.API.Infrastructure.Services
         public User GetById(int id)
         {
             return this._usersRepository.GetById(id);
+        }
+
+        public User GetByEmail(string email)
+        {
+            return this._usersRepository.GetByEmail(email);
         }
     }
 }
