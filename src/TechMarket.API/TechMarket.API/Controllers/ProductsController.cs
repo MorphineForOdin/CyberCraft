@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ using TechMarket.API.Models.Products;
 
 namespace TechMarket.API.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("api/products")]
     public class ProductsController : ControllerBase

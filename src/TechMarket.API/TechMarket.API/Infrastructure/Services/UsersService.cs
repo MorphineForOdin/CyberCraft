@@ -23,5 +23,10 @@ namespace TechMarket.API.Infrastructure.Services
         {
             return this._usersRepository.GetById(id);
         }
+
+        public  User GetByEmail(string email)
+        {
+            return this._usersRepository.GetByEmail(email);
+        }
     }
 }

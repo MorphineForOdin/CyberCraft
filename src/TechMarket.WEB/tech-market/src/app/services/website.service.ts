@@ -13,7 +13,7 @@ export class WebsiteService {
 
     getSliderImages(): Observable<SliderImage[]> {
         return this._httpClient
-            .get<GetSliderImagesResponse>(`https://localhost:44318/api/website/sliders`)
+            .get<GetSliderImagesResponse>(`https://localhost:5001/api/website/sliders`)
             .pipe(map(response => response.sliderImages));
     }
 }

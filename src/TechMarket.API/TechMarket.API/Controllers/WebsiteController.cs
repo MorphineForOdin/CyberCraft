@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using TechMarket.API.Infrastructure.Domain;
@@ -8,6 +9,7 @@ using TechMarket.API.Models.Website;
 
 namespace TechMarket.API.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("api/website")]
     public class WebsiteController : ControllerBase

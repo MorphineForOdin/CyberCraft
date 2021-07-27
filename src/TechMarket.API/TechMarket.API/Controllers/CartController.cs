@@ -2,9 +2,11 @@
 
 using TechMarket.API.Models.Cart;
 using TechMarket.API.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TechMarket.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/cart")]
     public class CartController : ControllerBase

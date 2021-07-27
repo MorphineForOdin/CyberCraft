@@ -67,5 +67,28 @@ namespace TechMarket.API.Infrastructure.Repositories
                 return null;
             }
         }
+
+        public User GetByEmail(string email)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(this._settings.ConnectionString))
+                using (var command = new SqlCommand("spUsers_GetByEmail", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar, 40).Value = email;
+
+                    connection.Open();
+                    using SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows && reader.Read())
+                        return UserDto.MapFrom(reader).ToDomainModel();
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }
