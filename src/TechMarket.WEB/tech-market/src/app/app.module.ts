@@ -8,10 +8,16 @@ import { LandingModule } from './pages/landing/landing.module';
 import { LoginModule } from './pages/login/login.module';
 import { ProductsModule } from './pages/products/products.module';
 import { CartModule } from './pages/cart/cart.module';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ProfileModule } from './pages/profile/profile.module';
+import { FormsModule } from '@angular/forms';
+
+import { authInterceptorProviders } from '../helpers/auth.interceptor';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -21,9 +27,11 @@ import { CartModule } from './pages/cart/cart.module';
         LoginModule,
         ProductsModule,
         CartModule,
+        FormsModule,
+        ProfileModule,
         HttpClientModule
     ],
-    providers: [],
+    providers: [authInterceptorProviders],
     bootstrap: [
         AppComponent
     ]

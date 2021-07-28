@@ -9,7 +9,7 @@ using TechMarket.API.Models.Users;
 
 namespace TechMarket.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/users")]
     public class UsersController : ControllerBase
