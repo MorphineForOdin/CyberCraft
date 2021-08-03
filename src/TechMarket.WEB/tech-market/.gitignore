@@ -1,45 +1,35 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+ Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# compiled output
-/dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
 
-# dependencies
-/node_modules
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
 
-# profiling files
-chrome-profiler-events*.json
+# Dependency directories
+node_modules/
+jspm_packages/
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Distribution directories
+dist/
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# Typescript v1 declaration files
+typings/
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+# Optional npm cache directory
+.npm
 
-# System Files
-.DS_Store
-Thumbs.db
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
