@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import {LoginComponent} from '../../pages/login/login.component'
 
 @Component({
     selector: 'tm-header',
@@ -11,14 +12,16 @@ export class HeaderComponent implements OnInit {
     menuOpened: boolean = true;
     authenticated: boolean = false;
 
-    constructor( private authService: AuthService) { }
+    constructor( private authService: AuthService, private loginComponent: LoginComponent) {
+        this.authService.
+    }
 
     ngOnInit(): void {
         if (!this.authService.isLoggedIn)
         {
             this.authenticated=false;
         }
-        else 
+        else
         {
             this.authenticated=true;
         }
