@@ -9,8 +9,8 @@ using TechMarket.API.Models.Products;
 
 namespace TechMarket.API.Controllers
 {
-    [AllowAnonymous]
-    [ApiController]
+    //[AllowAnonymous]
+    //[ApiController]
     [Route("api/products")]
     public class ProductsController : ControllerBase
     {
