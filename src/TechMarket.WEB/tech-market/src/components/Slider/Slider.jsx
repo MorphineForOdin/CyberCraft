@@ -22,14 +22,14 @@ class Slider extends Component {
 
     next() {
         this.slideRef.current.goNext();
-    }    
+    }
 
     componentDidMount() {
         axios.get('https://localhost:5001/api/website/sliders').then(res => {
             this.setState({ sliders: res.data.sliderImages });
 
         });
-    }    
+    }
 
     render() {
         const properties = {
@@ -43,16 +43,14 @@ class Slider extends Component {
         };
 
         return (
-            <div className="slide-container">
+            <div className="slide_container">
                 <Slide ref={this.slideRef} {...properties}>
                     {this.state.sliders.map((sliderImages) => (
                         <div
                             style={{
-                                backgroundImage: `url(${sliderImages.imageUrl})`,
-                                backgroundPosition: 'center',
-                                backgroundSize: 'cover'
+                                backgroundImage: `url(${sliderImages.imageUrl})`
                             }}
-                            key={sliderImages.id} className="each-slide"
+                            key={sliderImages.id} className="each_slide"
                         >
                         </div>
                     ))}

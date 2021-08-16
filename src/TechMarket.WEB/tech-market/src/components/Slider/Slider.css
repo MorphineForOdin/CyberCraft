@@ -1,12 +1,13 @@
-.slide-container {
+.slide_container {
     width: 70%;
     margin: auto;
   }
  
-  .each-slide {
+  .each_slide {
     display: flex;
     border-radius: 1em;
-    background-size: contain;
+    background-position: center;
+    background-size: cover;
     height: 20em;
   }
   
