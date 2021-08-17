@@ -3,10 +3,12 @@
 .nav_header {
     --bs-bg-opacity: 1;
     background-color: $main_color_header_footer;
-    color: white;
+    color: $nav_color_menu;
     height: 6em;
 }
 
-.nav_header .container a {
-    color: white;
+@media (min-width: 375px) and (max-width: 991.98px) {
+    .nav_header {
+        height: auto
+    }
 }

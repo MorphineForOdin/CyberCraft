@@ -12,7 +12,7 @@ const Nav_categories = () => {
             {categories.length === 0
                 ? ' '
                 : categories.filter(parent => parent.parentId === 1)
-                    .map((categ) => <NavDropdown.Item href="#">{categ.name}</NavDropdown.Item>)}
+                    .map((categ) => <NavDropdown.Item href={categ.name} key={categ.id}>{categ.name}</NavDropdown.Item>)}
             <NavDropdown.Divider />
 
             <NavDropdown.Item href="#">All</NavDropdown.Item>
