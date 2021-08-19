@@ -4,7 +4,7 @@ import '../not_found/Not_found.scss';
 const Not_found = () => {
     return (
         <div className="container">
-            <div className="row justify-content-center">
+            <div className="row">
                 <div className="col-12 text-center">
                     <h1 className="my-3">404</h1>
                 </div>

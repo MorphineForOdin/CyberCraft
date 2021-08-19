@@ -12,7 +12,7 @@ import {
 class Main extends React.Component {
     render() {
         return (
-            <div className='main col w-100 h-100'>
+            <div className='main row w-100 h-100'>
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Home} />

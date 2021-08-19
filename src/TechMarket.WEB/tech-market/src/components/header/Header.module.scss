@@ -1,14 +1,6 @@
 @import "../../styles/variables.scss";
 
 .nav_header {
-    --bs-bg-opacity: 1;
     background-color: $main_color_header_footer;
     color: $nav_color_menu;
-    //height: auto;
 }
-
-// @media (min-width:991.98px) {
-//     .nav_header {
-//         height: 6em;
-//     }       
-// }
