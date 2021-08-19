@@ -12,7 +12,7 @@ const Footer = () => {
                 <BrowserRouter>
                     <div className="container">
                         <div className="row">
-                            <div className="col-3 d-lg-block d-none item">
+                            <div className="col-3 d-none d-lg-block item">
                                 <h3 className="font-weight-bold text-left mt-0 mb-2">Categories</h3>
                                 <ul className="list-unstyled mb-0 p-0">
                                     {categories.length === 0
@@ -21,7 +21,7 @@ const Footer = () => {
                                             .map((categ) => <li><NavLink className="categories_navlink text-decoration-none" to={categ.name} activeClassName="active" key={categ.id}>{categ.name}</NavLink></li>)}
                                 </ul>
                             </div>
-                            <div className="col-3 d-lg-block d-none item">
+                            <div className="col-3 d-none d-lg-block item">
                                 <h3 className="font-weight-bold text-left mt-0 mb-2 ">About</h3>
                                 <ul className="list-unstyled p-0 ">
                                     <li><a className="about_link text-decoration-none" href="#">Company</a></li>
