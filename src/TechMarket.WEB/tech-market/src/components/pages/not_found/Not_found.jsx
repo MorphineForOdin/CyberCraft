@@ -9,7 +9,7 @@ const Not_found = () => {
                     <h1 className="my-3">404</h1>
                 </div>
                 <div className="col-12 four_zero_four_bg" ></div>
-                <div className="col-12 text-center mt-n5 contant_box_404">
+                <div className="col-12 text-center contant_box_404">
                     <h3 className="h2"> Look like you're lost</h3>
                     <p>the page you are looking for not avaible!</p>
                     <div className="row justify-content-center ">

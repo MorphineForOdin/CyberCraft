@@ -1,5 +1,9 @@
 @import "../../../styles/variables.scss";
 
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/_mixins";
+
 .page_404 {
     background: $nav_color_menu;
 }
@@ -21,8 +25,9 @@
     background-color: #dddedf;
 }
 
-@media (max-width: 991.98px) {
-    .four_zero_four_bg {
-        background-size: contain;
+.four_zero_four_bg {
+@include media-breakpoint-down(lg) { 
+    
+        background-size: contain; 
     }
 }
