@@ -1,9 +1,8 @@
 @import "../../styles/variables.scss";
 
 .footer_dark {
-  padding: 1em 1em;
   color: $nav_color_menu;
-  background-color: #282d32;
+  background-color: #1d1c1c;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -11,12 +10,10 @@
 
 .footer_dark h3 {
   font-size: $font_size_16px;
-  text-align: left;
 }
 
 .footer_dark ul {
-  list-style: none;
-  line-height: 1.6;
+  //line-height: 1.6;
   font-size: $font_size_14px;
 }
 

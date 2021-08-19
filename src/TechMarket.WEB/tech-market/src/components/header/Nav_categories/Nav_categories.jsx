@@ -5,10 +5,10 @@ import { useGetCategories } from '../../../api/get_categories/hooks/get_categori
 const Nav_categories = () => {
 
     const { data: categories } = useGetCategories();
-
+   
     return (
+        
         <NavDropdown title="Categories" id="collasible-nav-dropdown">
-
             {categories.length === 0
                 ? ' '
                 : categories.filter(parent => parent.parentId === 1)

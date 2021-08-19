@@ -1,4 +1,4 @@
-﻿namespace TechMarket.API.Infrastructure.Domain 
+﻿namespace TechMarket.API.Infrastructure.Domain
 {
     public class Category
     {

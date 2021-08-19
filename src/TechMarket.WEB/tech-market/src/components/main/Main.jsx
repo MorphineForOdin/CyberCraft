@@ -9,11 +9,10 @@ import {
     Route
 } from "react-router-dom";
 
-
 class Main extends React.Component {
     render() {
         return (
-            <div className='main'>
+            <div className='main col w-100 h-100'>
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Home} />
@@ -23,7 +22,6 @@ class Main extends React.Component {
                 </Router>
             </div>
         );
-
     }
 }
 

@@ -8,10 +8,10 @@ import './App.scss';
 
 function App() {
   return (
-    <div className="app">
-     <Header />
-     <Main />
-     <Footer />
+    <div className="app d-flex flex-column h-100">
+      <Header />
+      <Main />
+      <Footer />
     </div>
   );
 }

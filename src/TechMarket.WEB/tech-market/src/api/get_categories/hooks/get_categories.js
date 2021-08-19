@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const { REACT_APP_API_URL } = process.env
+const { REACT_APP_API_URL } = process.env;
 
  export const useGetCategories = () => 
  {
