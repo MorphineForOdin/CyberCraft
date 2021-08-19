@@ -21,13 +21,8 @@
     font-size: $font_size_32px;
 }
 
-.btnNotFound:hover {
-    background-color: #dddedf;
-}
-
 .four_zero_four_bg {
 @include media-breakpoint-down(lg) { 
-    
         background-size: contain; 
     }
 }

@@ -14,7 +14,7 @@ const Not_found = () => {
                     <p>the page you are looking for not avaible!</p>
                     <div className="row justify-content-center ">
                         <div className="col-3 col-md-2">
-                            <a href="/" className="btn btnNotFound border border-dark text-dark w-100 p-2" role="button">Go home</a>
+                            <a href="/" className="btn btn-outline-dark border border-dark w-100 p-2" role="button">Go home</a>
                         </div>
                     </div>
                 </div>
