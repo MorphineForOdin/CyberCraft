@@ -22,7 +22,7 @@
 }
 
 .four_zero_four_bg {
-@include media-breakpoint-down(lg) { 
+    @include media-breakpoint-down(lg) { 
         background-size: contain; 
     }
 }
