@@ -11,7 +11,6 @@ export const useGetSliderImages = () => {
         const fetchSliders = () => {
             axios.get(`${REACT_APP_API_URL}/website/sliders`)
                 .then(res => setSliders(res.data.sliderImages))
-                .catch((err) => console.log(err))
         };
         fetchSliders();
     }, []);
