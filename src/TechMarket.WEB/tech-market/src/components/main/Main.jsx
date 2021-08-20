@@ -2,6 +2,7 @@ import React from 'react';
 import Home from '../pages/home/Home';
 import About from '../pages/about/About';
 import Not_found from '../pages/not_found/Not_found';
+import Product from '../../UI/productPattern/Product';
 import '../main/Main.scss';
 import {
     BrowserRouter as Router,
@@ -17,6 +18,7 @@ class Main extends React.Component {
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/about" component={About} />
+                        <Route path="/product" component={Product} />
                         <Route component={Not_found} />
                     </Switch>
                 </Router>
