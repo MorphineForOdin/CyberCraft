@@ -24,7 +24,7 @@ namespace TechMarket.API.Controllers
         [HttpGet("sliders")]
         public IActionResult Get()
         {
-            IEnumerable<SliderImage> images = this._websiteService.GetAll();    
+            IEnumerable<SliderImage> images = this._websiteService.GetAll();
             return base.Ok(new GetSliderImagesResponse { SliderImages = images });
         }
     }
