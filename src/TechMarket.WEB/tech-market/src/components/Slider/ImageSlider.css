@@ -1,0 +1,25 @@
+.slide_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  height: 20rem;
+  margin: auto;
+  border-radius: 1rem;
+  background-position: center;
+  background-size: cover;
+  transition-duration: 1s;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: gray;
+  border-radius: 50%;
+  cursor: pointer;
+  border: #fff 1px solid
+}
