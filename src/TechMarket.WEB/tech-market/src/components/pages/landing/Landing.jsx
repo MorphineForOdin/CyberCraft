@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageSlider from '../../slider/ImageSlider'
+import ImageSlider from './../../Slider/ImageSlider'
 import useGetSliderImages from '../../../api/hooks/getSliderImages'
 import PropTypes from 'prop-types'
 

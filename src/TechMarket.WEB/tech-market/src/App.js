@@ -6,7 +6,6 @@ import Main from './components/main/Main';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
 import './App.scss';
-import Landing from './components/pages/landing/Landing';
 
 function App() {
   return (
@@ -14,8 +13,6 @@ function App() {
       <Header />
       <Main />
       <Footer />
-    <div className="App">
-      <Landing />
     </div>
   );
 }
