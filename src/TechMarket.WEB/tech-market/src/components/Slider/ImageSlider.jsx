@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
+import { ArrowRightCircle, ArrowLeftCircle } from 'react-bootstrap-icons';  
 import './ImageSlider.css'
-import { ArrowRightCircle, ArrowLeftCircle } from 'react-bootstrap-icons';
-  
 
 const ImageSlider = ({ images }) => {
 
@@ -14,7 +13,7 @@ const ImageSlider = ({ images }) => {
 
     const getPrev = () => {
         setCurrent(current === 0 ? length - 1 : current - 1);
-    };
+    };   
 
     return (
         <div className="slide_container" style={{
@@ -24,6 +23,6 @@ const ImageSlider = ({ images }) => {
             <ArrowRightCircle className='buttons' onClick={getNext}>NEXT</ArrowRightCircle>
         </div>
     );
-}
+};
 
 export default ImageSlider

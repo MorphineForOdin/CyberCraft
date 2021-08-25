@@ -1,17 +1,17 @@
 import React from 'react';
-import ImageSlider from './../../Slider/ImageSlider';
-import useGetSliderImages from './../../../api/hooks/getSliderImages';
 import PropTypes from 'prop-types';
 import { Container, Col, Row } from 'react-bootstrap';
+import ImageSlider from './../../Slider/ImageSlider';
+import useGetSliderImages from './../../../api/hooks/getSliderImages';
 import './Home.css';
 
 const Home = () => {
 
-    let imagesData = useGetSliderImages().sliders.map(x => x.imageUrl);
+    let images = useGetSliderImages().sliders.map(x => x.imageUrl);
 
     return (
         <div className='mt-2'>
-            <ImageSlider images={imagesData} />
+            <ImageSlider images={images} />
             <Container className='mt-3'>
                 <Row className='justify-content-between'>
                     <Col sm={12} md={2} lg={3} className='home_col'>
