@@ -19,7 +19,7 @@
   width: 3.5rem;
   height: 3.5rem;
   background-color: gray;
+  opacity: .7;
   border-radius: 50%;
   cursor: pointer;
-  border: #fff 1px solid
 }

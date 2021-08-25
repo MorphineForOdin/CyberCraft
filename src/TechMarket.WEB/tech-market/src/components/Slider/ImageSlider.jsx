@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import "./ImageSlider.css"
+import { ArrowRightCircle, ArrowLeftCircle } from 'react-bootstrap-icons';
+import './ImageSlider.css'
 
 const ImageSlider = ({ images }) => {
 
     const [current, setCurrent] = useState(0);
     const length = images.length;
-    
+
     const getNext = () => {
         setCurrent(current === length - 1 ? 0 : current + 1);
     };
@@ -18,10 +19,10 @@ const ImageSlider = ({ images }) => {
         <div className="slide_container" style={{
             backgroundImage: `url(${images[current]})`
         }}>
-            <div className='buttons' onClick={getPrev}>PREV</div>
-            <div className='buttons' onClick={getNext}>NEXT</div>
+            <ArrowLeftCircle className='buttons' onClick={getPrev}>PREV</ArrowLeftCircle>
+            <ArrowRightCircle className='buttons' onClick={getNext}>NEXT</ArrowRightCircle>
         </div>
     );
-}
+};
 
 export default ImageSlider
