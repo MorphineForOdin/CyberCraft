@@ -1,22 +1,27 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import {
+    useState,
+    useEffect
+} from "react";
 
-const { REACT_APP_API_URL } = process.env;
+const {
+    REACT_APP_API_URL
+} = process.env;
 
- export const useGetCategories = () => 
- {
-    const [data, setData] = useState ([]);
+export const useGetCategories = () => {
+    const [data, setData] = useState([]);
 
-    useEffect ( () => 
-    {
+    useEffect(() => {
         const fetchData = async () => {
-             axios.get(`${REACT_APP_API_URL}/products/categories`)
-                    .then (respon => setData(respon.data.categories))
-                    .catch((err) => console.log(err))
+            axios.get(`${REACT_APP_API_URL}/products/categories`)
+                .then(respon => setData(respon.data.categories))
+                .catch((err) => console.log(err))
         };
         fetchData();
-    }, [] );
-return { data };
+    }, []);
+    return {
+        data
+    };
 }
-       
+
 export default useGetCategories;

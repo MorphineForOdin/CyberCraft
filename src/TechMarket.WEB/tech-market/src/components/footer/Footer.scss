@@ -2,8 +2,8 @@
 
 .footer_dark {
   color: $nav_color_menu;
+  position: fixed;
   background-color: #1d1c1c;
-  position: absolute;
   bottom: 0;
   width: 100%;
 }
@@ -16,13 +16,15 @@
   font-size: $font_size_14px;
 }
 
-.about_link, .categories_navlink {
+.about_link,
+.categories_navlink {
   font-family: $font-family;
   color: inherit;
   opacity: 75%;
 }
 
-.about_link:hover, .categories_navlink:hover {
+.about_link:hover,
+.categories_navlink:hover {
   color: inherit;
   opacity: 100%;
 }

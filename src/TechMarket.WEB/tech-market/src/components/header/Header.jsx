@@ -6,7 +6,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 class Header extends React.Component {
   render() {
     return (
-      <Navbar className={`${header.nav_header}` } collapseOnSelect expand="lg" variant="dark">
+      <Navbar className={`${header.nav_header}`} collapseOnSelect expand="lg" variant="dark">
         <Container>
           <Navbar.Brand href="/">Tech-market</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -14,7 +14,6 @@ class Header extends React.Component {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
-              <Nav.Link href="/product">Product</Nav.Link>
               <Nav_categories></Nav_categories>
             </Nav>
             <Nav>
