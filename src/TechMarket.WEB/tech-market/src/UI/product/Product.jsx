@@ -35,14 +35,14 @@ const Product = (props) => {
           <div className="row g-1">
             <div className="col-6">
               <button type="button"
-                className="btn btn-dark btn-sm rounded   w-100"
+                className="btn btn-dark btn-sm rounded w-100"
                 disabled={product.quantity === 0 ? true : false} onClick={() => history.push("/cart")}>
                 Buy
               </button>
             </div>
             <div className="col-6">
               <button type="button"
-                className="btn btn-dark btn-sm rounded   w-100"
+                className="btn btn-dark btn-sm rounded w-100"
                 onClick={() => history.push(`/product/${product.id}`)}>
                 More
               </button>
