@@ -20,7 +20,7 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                 CategoryId = reader.GetInt32(reader.GetOrdinal("CategoryId")),
                 Name = reader.GetString(reader.GetOrdinal("Name")),
-                Description = reader.GetString(reader.GetOrdinal("Name")),
+                Description = reader.GetString(reader.GetOrdinal("Description")),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
                 ImageUrl=reader.GetString(reader.GetOrdinal("ImageUrl"))
             };
