@@ -16,7 +16,7 @@ namespace TechMarket.API.Infrastructure.Services
             this._productsRepository = productsRepository;
         }
 
-        public IEnumerable<Product> Get(int skip, int take, int? categoryId)
+        public IEnumerable<Product> Get(int skip, int take, int categoryId)
         {
             return this._productsRepository.Get(skip, take, categoryId);
         }

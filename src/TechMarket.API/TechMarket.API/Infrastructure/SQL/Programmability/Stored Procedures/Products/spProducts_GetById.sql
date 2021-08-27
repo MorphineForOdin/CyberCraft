@@ -43,12 +43,9 @@ BEGIN
         products.[Name],
         products.[Description],
         products.[ImageUrl],
-        products.[Price],
-        warehouse.[Quantity]
+        products.[Price]
     FROM Products AS products
-        LEFT JOIN dbo.ProductsWarehouses AS warehouse
-            ON products.[Id] = warehouse.[ProductId]
-    WHERE products.[Id] = @Id;
+    WHERE Id = @Id;
 
     SELECT
         attributes.[Id],
@@ -61,7 +58,6 @@ BEGIN
         INNER JOIN dbo.ProductValues AS productValues
             ON attributesValues.[ValueId] = productValues.[Id]
     WHERE attributesValues.[ProductId] = @Id;
-   
 END
 GO
 --============================================================================

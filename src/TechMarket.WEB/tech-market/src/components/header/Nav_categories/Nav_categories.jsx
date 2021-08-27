@@ -9,12 +9,10 @@ const Nav_categories = () => {
     return (
 
         <NavDropdown title="Categories" id="collasible-nav-dropdown">
-            {categories.length === 0
-                ? ' '
-                : categories.filter(parent => parent.parentId === 1)
-                    .map((categ) => <NavDropdown.Item href={`/category/${categ.id}`} key={categ.id}>{categ.name}</NavDropdown.Item>)}
-            <NavDropdown.Divider />
+            {categories.filter(parent => parent.parentId != null)
+                .map(categ => <NavDropdown.Item href={`/category/${categ.id}`} key={categ.id}>{categ.name}</NavDropdown.Item>)}
 
+            <NavDropdown.Divider />
             <NavDropdown.Item href="/category/0">All</NavDropdown.Item>
         </NavDropdown>
     );

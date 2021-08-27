@@ -15,7 +15,7 @@ export const useGetCategories = () => {
         const fetchData = async () => {
             axios.get(`${REACT_APP_API_URL}/products/categories`)
                 .then(respon => setData(respon.data.categories))
-                .catch((err) => console.log(err))
+                .catch((err) => err)
         };
         fetchData();
     }, []);

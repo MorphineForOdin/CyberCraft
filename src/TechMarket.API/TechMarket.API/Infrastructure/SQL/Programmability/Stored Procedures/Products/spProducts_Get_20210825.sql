@@ -42,7 +42,7 @@ BEGIN
         RETURN -1;
     END
 
-    IF @CategoryId IS NOT NULL AND @CategoryId < 0
+    IF @CategoryId IS NULL AND @CategoryId < 0
     BEGIN
         RAISERROR ('Must pass a valid @CategoryId', 11, 3);
         RETURN -1;
@@ -51,6 +51,7 @@ BEGIN
     --========================================================================
     -- Return:
     --========================================================================
+
     SELECT
         products.[Id],
         products.[CategoryId],
@@ -62,7 +63,7 @@ BEGIN
     FROM Products AS products
         LEFT JOIN dbo.ProductsWarehouses AS warehouse
             ON products.[Id] = warehouse.[ProductId]
-    WHERE (@CategoryId IS NULL) OR (products.[CategoryId] = @CategoryId)
+    WHERE (@CategoryId = 0) OR (products.[CategoryId] = @CategoryId)
     
     ORDER BY Products.[Id]
         OFFSET @Skip ROWS

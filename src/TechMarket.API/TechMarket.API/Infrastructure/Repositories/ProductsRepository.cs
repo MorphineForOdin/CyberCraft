@@ -19,7 +19,7 @@ namespace TechMarket.API.Infrastructure.Repositories
             this._settings = settings;
         }
 
-        public IEnumerable<Product> Get(int skip, int take, int? categoryId)
+        public IEnumerable<Product> Get(int skip, int take, int categoryId)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace TechMarket.API.Infrastructure.Repositories
                 Product product = null;
                 var attributes = new List<ProductAttributeValueDto>();
                 using (var connection = new SqlConnection(this._settings.ConnectionString))
-                using (var command = new SqlCommand("dbo.spProducts_GetById_20210825", connection))
+                using (var command = new SqlCommand("dbo.spProducts_GetById", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@Id", SqlDbType.Int).Value = id;

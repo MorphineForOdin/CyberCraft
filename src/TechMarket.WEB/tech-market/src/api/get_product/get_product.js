@@ -23,7 +23,7 @@ export const useGetProduct = ({
           (take ? `take=${take}&` : '') +
           (categoryId ? `categoryId=${categoryId}` : ''))
         .then(response => setData(response.data.products))
-        .catch((error) => console.log(error))
+        .catch((error) => error)
     };
     fetchdata();
   }, [skip, take, categoryId]);

@@ -9,9 +9,11 @@ const Category = () => {
   const { data: product } = useGetProduct({ categoryId: id });
 
   return (
-    <div className="row justify-content-center m-2">
+    <div className="container-fluid">
+      <div className="row justify-content-center w-100 m-3">
       {product
-        .map(prod => <Product data={prod} key={prod.id}></Product>)}
+        .map(prod =><div className="col-8 col-md-2" key={prod.id}> <Product  data={prod}></Product> </div>)}
+    </div>
     </div>
   );
 }
