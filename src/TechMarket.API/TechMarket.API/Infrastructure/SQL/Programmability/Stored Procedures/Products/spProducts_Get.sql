@@ -22,7 +22,7 @@ GO
 CREATE PROCEDURE spProducts_Get_20210825
     @Skip INT,
     @Take INT,
-    @CategoryId INT
+    @CategoryId INT = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -42,7 +42,7 @@ BEGIN
         RETURN -1;
     END
 
-    IF @CategoryId IS NULL AND @CategoryId < 0
+    IF @CategoryId IS NOT NULL AND @CategoryId < 0
     BEGIN
         RAISERROR ('Must pass a valid @CategoryId', 11, 3);
         RETURN -1;
@@ -63,11 +63,12 @@ BEGIN
     FROM Products AS products
         LEFT JOIN dbo.ProductsWarehouses AS warehouse
             ON products.[Id] = warehouse.[ProductId]
-    WHERE (@CategoryId = 0) OR (products.[CategoryId] = @CategoryId)
-    
+            
+    WHERE (@CategoryId IS NULL) OR (products.[CategoryId] = @CategoryId)
     ORDER BY Products.[Id]
         OFFSET @Skip ROWS
-        FETCH NEXT @Take ROWS ONLY;
+        FETCH NEXT @Take ROWS ONLY
+
 END
 GO
 --============================================================================

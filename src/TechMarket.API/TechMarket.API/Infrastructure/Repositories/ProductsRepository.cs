@@ -19,7 +19,7 @@ namespace TechMarket.API.Infrastructure.Repositories
             this._settings = settings;
         }
 
-        public IEnumerable<Product> Get(int skip, int take, int categoryId)
+        public IEnumerable<Product> Get(int skip, int take, int? categoryId)
         {
             try
             {

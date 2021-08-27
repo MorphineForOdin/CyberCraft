@@ -22,7 +22,7 @@ namespace TechMarket.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] int skip = 0, [FromQuery] int take = 12, [FromQuery] int categoryId = 0)
+        public IActionResult Get([FromQuery] int skip = 0, [FromQuery] int take = 12, [FromQuery] int? categoryId = null)
         {
             IEnumerable<Product> products = this._productsService.Get(skip, take, categoryId);
             return base.Ok(new GetProductsResponse { Products = products });
