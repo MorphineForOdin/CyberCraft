@@ -1,13 +1,14 @@
 import React from 'react';
-import Home from '../pages/home/Home';
-import About from '../pages/about/About';
-import Not_found from '../pages/not_found/Not_found';
-import '../main/Main.scss';
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
+import Home from '../pages/home/Home';
+import About from '../pages/about/About';
+import Not_found from '../pages/not_found/Not_found';
+import '../main/Main.scss';
+import Product from '../pages/product/Product';
 
 class Main extends React.Component {
     render() {
@@ -15,8 +16,9 @@ class Main extends React.Component {
             <div className='main w-100 h-100'>
                 <Router>
                     <Switch>
-                        <Route exact path="/" component={Home} />
+                        <Route path="/product/:id" children={<Product />} />
                         <Route path="/about" component={About} />
+                        <Route exact path="/" component={Home} />
                         <Route component={Not_found} />
                     </Switch>
                 </Router>
