@@ -7,8 +7,8 @@ import {
 import Home from '../pages/home/Home';
 import About from '../pages/about/About';
 import Not_found from '../pages/not_found/Not_found';
-import '../main/Main.scss';
 import Product from '../pages/product/Product';
+import '../main/Main.scss';
 
 class Main extends React.Component {
     render() {

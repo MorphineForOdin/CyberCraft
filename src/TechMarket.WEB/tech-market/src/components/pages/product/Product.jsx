@@ -24,14 +24,17 @@ const Product = () => {
                     <Col sm={12} md={6}>
                         <h3 className='mt-3'>{prod.name}</h3>
                         <h4>Price: ${prod.price}</h4>
-                        <button type="button" className="col-12 col-md-5 btn btn-success ">Buy</button>
-                        <ul className='h5 mt-2'>
+                        <Row>
+                            <Col sm={12} md={5}>
+                                <button type="button" className="btn btn-success w-100">Buy</button>
+                            </Col>
+                        </Row>
+
+                        <ul className='mt-2'>
                             <h4>Attributes:</h4>
-                            {attributesList}
+                            <span className='h5'>{attributesList}</span>
                         </ul>
                     </Col>
-                </Row>
-                <Row>
                     <Col>
                         <div>Description: {prod.description}</div>
                     </Col>
