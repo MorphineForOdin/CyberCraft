@@ -1,13 +1,15 @@
 import React from 'react';
-import Home from '../pages/home/Home';
-import About from '../pages/about/About';
-import Not_found from '../pages/not_found/Not_found';
-import Category from '../pages/category/Category';
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
+import Home from '../pages/home/Home';
+import About from '../pages/about/About';
+import Not_found from '../pages/not_found/Not_found';
+import Product from '../pages/product/Product';
+import Category from '../pages/category/Category';
+import '../main/Main.scss';
 
 class Main extends React.Component {
     render() {
@@ -16,6 +18,7 @@ class Main extends React.Component {
                 <Router>
                     <Switch>
                         <Route exact path="/category/:id" component={Category} />
+                        <Route path="/product/:id" children={<Product />} />
                         <Route path="/category" component={Category} />
                         <Route path="/about" component={About} />
                         <Route exact path="/" component={Home} />
