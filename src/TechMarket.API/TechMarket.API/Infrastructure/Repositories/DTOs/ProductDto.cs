@@ -12,6 +12,7 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string ImageUrl { get; set; }
+        public int? Quantity { get; set; }
 
         public static ProductDto MapFrom(SqlDataReader reader)
         {
@@ -22,7 +23,8 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
                 Name = reader.GetString(reader.GetOrdinal("Name")),
                 Description = reader.GetString(reader.GetOrdinal("Description")),
                 Price = reader.GetDecimal(reader.GetOrdinal("Price")),
-                ImageUrl=reader.GetString(reader.GetOrdinal("ImageUrl"))
+                ImageUrl=reader.GetString(reader.GetOrdinal("ImageUrl")),
+                Quantity = reader.IsDBNull(reader.GetOrdinal("Quantity")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("Quantity"))
             };
         }
 
@@ -35,7 +37,8 @@ namespace TechMarket.API.Infrastructure.Repositories.DTOs
                 Name = this.Name,
                 Description = this.Description,
                 Price = this.Price,
-                ImageUrl=this.ImageUrl
+                ImageUrl=this.ImageUrl,
+                Quantity=this.Quantity
             };
         }
     }
