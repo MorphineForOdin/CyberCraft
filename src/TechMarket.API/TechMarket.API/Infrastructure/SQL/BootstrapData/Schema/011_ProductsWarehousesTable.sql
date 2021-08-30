@@ -23,7 +23,7 @@ CREATE TABLE dbo.ProductsWarehouses (
 	[WarehouseId] INT NOT NULL
 		CONSTRAINT FK_ProductsWarehouses_Warehouses FOREIGN KEY REFERENCES dbo.Warehouses([Id]),
 	[Quantity] INT NOT NULL
-		CONSTRAINT CH_ProductsWarehouses_Quantity CHECK ([Quantity] > 0),
+		CONSTRAINT CH_ProductsWarehouses_Quantity CHECK ([Quantity] >= 0),
 
 	CONSTRAINT PK_ProductsWarehouses PRIMARY KEY ([ProductId], [WarehouseId])
 );
