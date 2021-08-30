@@ -10,7 +10,7 @@
 
 .four_zero_four_bg {
     background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    background-size:50%;
+    background-size: 50%;
     height: 50vh;
     width: 100%;
     background-repeat: no-repeat;
@@ -22,7 +22,7 @@
 }
 
 .four_zero_four_bg {
-    @include media-breakpoint-down(lg) { 
-        background-size: contain; 
+    @include media-breakpoint-down(lg) {
+        background-size: contain;
     }
 }

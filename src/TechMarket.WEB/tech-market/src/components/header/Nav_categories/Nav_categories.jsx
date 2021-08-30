@@ -5,17 +5,15 @@ import { useGetCategories } from '../../../api/get_categories/hooks/get_categori
 const Nav_categories = () => {
 
     const { data: categories } = useGetCategories();
-   
-    return (
-        
-        <NavDropdown title="Categories" id="collasible-nav-dropdown">
-            {categories.length === 0
-                ? ' '
-                : categories.filter(parent => parent.parentId === 1)
-                    .map((categ) => <NavDropdown.Item href={categ.name} key={categ.id}>{categ.name}</NavDropdown.Item>)}
-            <NavDropdown.Divider />
 
-            <NavDropdown.Item href="#">All</NavDropdown.Item>
+    return (
+
+        <NavDropdown title="Categories" id="collasible-nav-dropdown">
+            {categories.filter(child => child.parentId === categories.find(parent => !parent.parentId).id)
+                .map(categ => <NavDropdown.Item href={`/category/${categ.id}`} key={categ.id}>{categ.name}</NavDropdown.Item>)}
+
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="/category">All</NavDropdown.Item>
         </NavDropdown>
     );
 }

@@ -1,4 +1,5 @@
-$base-font-size:                      15px;
+$base-font-size: 15px;
+
 @function rem($size) {
   @return $size / $base-font-size * 1rem;
 }
@@ -15,8 +16,9 @@ $font_size_24px: rem(24px);
 $font_size_32px: rem(32px);
 
 //color
-$main_color_header_footer :  #1d1c1c;
+$main_color_header_footer : #1d1c1c;
 $nav_color_menu : #FFFFFF;
 
 //font-family
-$font-family: 'Arvo', serif;
+$font-family: 'Arvo',
+serif;

@@ -5,12 +5,12 @@ GO
 IF EXISTS(
     SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
-    WHERE [ROUTINE_NAME] = 'spProducts_Get'
+    WHERE [ROUTINE_NAME] = 'spProducts_Get_20210825'
         AND [ROUTINE_TYPE] = 'PROCEDURE'
         AND [ROUTINE_BODY] = 'SQL'
         AND [SPECIFIC_SCHEMA] = 'dbo')
     BEGIN
-        DROP PROCEDURE dbo.spProducts_Get;
+        DROP PROCEDURE dbo.spProducts_Get_20210825;
     END
 GO
 ------------------------------------------------------------------------------
@@ -19,9 +19,10 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE PROCEDURE spProducts_Get
+CREATE PROCEDURE spProducts_Get_20210825
     @Skip INT,
-    @Take INT
+    @Take INT,
+    @CategoryId INT = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -41,6 +42,12 @@ BEGIN
         RETURN -1;
     END
 
+    IF @CategoryId IS NOT NULL AND @CategoryId < 0
+    BEGIN
+        RAISERROR ('Must pass a valid @CategoryId', 11, 3);
+        RETURN -1;
+    END
+
     --========================================================================
     -- Return:
     --========================================================================
@@ -50,11 +57,15 @@ BEGIN
         products.[Name],
         products.[Description],
         products.[Price],
-        products.[ImageUrl]
+        products.[ImageUrl],
+        warehouse.[Quantity]
     FROM Products AS products
+        LEFT JOIN dbo.ProductsWarehouses AS warehouse
+            ON products.[Id] = warehouse.[ProductId]        
+    WHERE (@CategoryId IS NULL) OR (products.[CategoryId] = @CategoryId)
     ORDER BY Products.[Id]
         OFFSET @Skip ROWS
-        FETCH NEXT @Take ROWS ONLY;
+        FETCH NEXT @Take ROWS ONLY
 END
 GO
 --============================================================================

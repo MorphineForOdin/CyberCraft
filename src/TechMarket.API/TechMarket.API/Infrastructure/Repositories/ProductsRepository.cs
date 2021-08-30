@@ -19,17 +19,18 @@ namespace TechMarket.API.Infrastructure.Repositories
             this._settings = settings;
         }
 
-        public IEnumerable<Product> Get(int skip, int take)
+        public IEnumerable<Product> Get(int skip, int take, int? categoryId)
         {
             try
             {
                 var dtos = new List<ProductDto>();
                 using (var connection = new SqlConnection(this._settings.ConnectionString))
-                using (var command = new SqlCommand("dbo.spProducts_Get", connection))
+                using (var command = new SqlCommand("dbo.spProducts_Get_20210825", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@Skip", SqlDbType.Int).Value = skip;
                     command.Parameters.Add("@Take", SqlDbType.Int).Value = take;
+                    command.Parameters.Add("@CategoryId", SqlDbType.Int).Value = categoryId;
 
                     connection.Open();
                     using SqlDataReader reader = command.ExecuteReader();
