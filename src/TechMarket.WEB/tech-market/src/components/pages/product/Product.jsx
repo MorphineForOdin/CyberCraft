@@ -17,12 +17,23 @@ const Product = () => {
     return (
         <div>
             <Container>
-                <Row>
+                <Row className='mt-3'>
+                    <Col sm={12} md={6}>
+                        <h3 className='text-center'>{prod.name}</h3>
+                    </Col>
+                    <Col>
+                        {prod.quantity === 0 ?
+                            <span className='text-danger'>Expected</span> : <span className='text-success'>In stock</span>}
+                    </Col>
+                    <Col>
+                        <div className='text-end'>ID: {prod.id}</div>
+                    </Col>
+                </Row>
+                <Row className='mt-3'>
                     <Col className='d-flex justify-content-center' sm={12} md={6}>
                         <img width='80%' src={prod.imageUrl} alt='product' />
                     </Col>
                     <Col sm={12} md={6}>
-                        <h3 className='mt-3'>{prod.name}</h3>
                         <h4>Price: ${prod.price}</h4>
                         <Row>
                             <Col sm={12} md={5}>
@@ -35,7 +46,7 @@ const Product = () => {
                             <span className='h5'>{attributesList}</span>
                         </ul>
                     </Col>
-                    <Col>
+                    <Col className='mt-3'>
                         <div>Description: {prod.description}</div>
                     </Col>
                 </Row>

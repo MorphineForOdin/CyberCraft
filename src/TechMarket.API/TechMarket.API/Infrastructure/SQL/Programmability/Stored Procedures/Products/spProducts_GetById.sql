@@ -5,12 +5,12 @@ GO
 IF EXISTS(
     SELECT *
     FROM INFORMATION_SCHEMA.ROUTINES
-    WHERE [ROUTINE_NAME] = 'spProducts_GetById'
+    WHERE [ROUTINE_NAME] = 'spProducts_GetById_20210830'
         AND [ROUTINE_TYPE] = 'PROCEDURE'
         AND [ROUTINE_BODY] = 'SQL'
         AND [SPECIFIC_SCHEMA] = 'dbo')
     BEGIN
-        DROP PROCEDURE dbo.spProducts_GetById;
+        DROP PROCEDURE dbo.spProducts_GetById_20210830;
     END
 GO
 ------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_PADDING ON;
 GO
 --============================================================================
-CREATE PROCEDURE spProducts_GetById
+CREATE PROCEDURE spProducts_GetById_20210830
     @Id INT
 AS
 BEGIN
@@ -37,14 +37,18 @@ BEGIN
     --========================================================================
     -- Return:
     --========================================================================
+
     SELECT
         products.[Id],
         products.[CategoryId],
         products.[Name],
         products.[Description],
         products.[ImageUrl],
-        products.[Price]
+        products.[Price],
+        warehouse.[Quantity]
     FROM Products AS products
+        INNER JOIN dbo.ProductsWarehouses AS warehouse
+            ON products.[Id] = warehouse.[ProductId]
     WHERE Id = @Id;
 
     SELECT
