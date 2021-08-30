@@ -16,6 +16,7 @@ class Main extends React.Component {
                 <Router>
                     <Switch>
                         <Route exact path="/category/:id" component={Category} />
+                        <Route path="/category" component={Category} />
                         <Route path="/about" component={About} />
                         <Route exact path="/" component={Home} />
                         <Route component={Not_found} />

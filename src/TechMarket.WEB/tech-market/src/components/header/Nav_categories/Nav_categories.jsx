@@ -13,7 +13,7 @@ const Nav_categories = () => {
                 .map(categ => <NavDropdown.Item href={`/category/${categ.id}`} key={categ.id}>{categ.name}</NavDropdown.Item>)}
 
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/category/0">All</NavDropdown.Item>
+            <NavDropdown.Item href="/category">All</NavDropdown.Item>
         </NavDropdown>
     );
 }

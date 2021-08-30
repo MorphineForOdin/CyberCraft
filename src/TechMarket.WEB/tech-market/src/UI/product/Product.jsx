@@ -18,16 +18,14 @@ const Product = (props) => {
         </div>
 
         <div className="col-12 text-center">
-          <div className="row">
-            <div className="col-12">
-              <h6 className="m-2">{product.name}</h6>
-            </div>
-            <div className="col-12">{product.quantity === 0 ?
-              <p style={{ color: "red" }}>Expected</p> : <p style={{ color: "green" }}>In stock</p>}
-            </div>
-            <div className="col-12">
-              <p>{product.price} $</p>
-            </div>
+          <div className="col-12">
+            <h6 className="m-2">{product.name}</h6>
+          </div>
+          <div className="col-12">{product.quantity === 0 ?
+            <span className="text-danger">Expected</span> : <span className="text-success">In stock</span>}
+          </div>
+          <div className="col-12">
+            <span>{product.price} $</span>
           </div>
         </div>
 
@@ -36,7 +34,7 @@ const Product = (props) => {
             <div className="col-6">
               <button type="button"
                 className="btn btn-dark btn-sm rounded w-100"
-                disabled={product.quantity === 0 ? true : false} onClick={() => history.push("/cart")}>
+                disabled={product.quantity === 0} onClick={() => history.push("/cart")}>
                 Buy
               </button>
             </div>
