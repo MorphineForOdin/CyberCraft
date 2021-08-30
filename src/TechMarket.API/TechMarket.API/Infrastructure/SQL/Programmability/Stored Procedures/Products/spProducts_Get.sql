@@ -51,7 +51,6 @@ BEGIN
     --========================================================================
     -- Return:
     --========================================================================
-
     SELECT
         products.[Id],
         products.[CategoryId],
@@ -62,13 +61,11 @@ BEGIN
         warehouse.[Quantity]
     FROM Products AS products
         LEFT JOIN dbo.ProductsWarehouses AS warehouse
-            ON products.[Id] = warehouse.[ProductId]
-            
+            ON products.[Id] = warehouse.[ProductId]        
     WHERE (@CategoryId IS NULL) OR (products.[CategoryId] = @CategoryId)
     ORDER BY Products.[Id]
         OFFSET @Skip ROWS
         FETCH NEXT @Take ROWS ONLY
-
 END
 GO
 --============================================================================
