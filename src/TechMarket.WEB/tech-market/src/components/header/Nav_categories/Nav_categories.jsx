@@ -9,7 +9,7 @@ const Nav_categories = () => {
     return (
 
         <NavDropdown title="Categories" id="collasible-nav-dropdown">
-            {categories.filter(parent => parent.parentId != null)
+            {categories.filter(child => child.parentId === categories.find(parent => !parent.parentId).id)
                 .map(categ => <NavDropdown.Item href={`/category/${categ.id}`} key={categ.id}>{categ.name}</NavDropdown.Item>)}
 
             <NavDropdown.Divider />

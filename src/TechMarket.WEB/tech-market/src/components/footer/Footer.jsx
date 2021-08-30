@@ -13,7 +13,7 @@ const Footer = () => {
                         <div className="col-3 d-none d-lg-block">
                             <h3 className="font-weight-bold text-left mt-0 mb-2">Categories</h3>
                             <ul className="list-unstyled mb-0 p-0">
-                                {categories.filter(parent => parent.parentId === 1)
+                                {categories.filter(child => child.parentId === categories.find(parent => !parent.parentId).id)
                                         .map((categ) => <li key={categ.id}>
                                             <a className="categories_navlink text-decoration-none" href={`/category/${categ.id}`}>{categ.name}</a></li>)}
                             </ul>

@@ -18,13 +18,13 @@ const Product = (props) => {
         </div>
 
         <div className="col-12 text-center">
-          <div className="col-12">
+          <div>
             <h6 className="m-2">{product.name}</h6>
           </div>
-          <div className="col-12">{product.quantity === 0 ?
+          <div>{product.quantity === 0 ?
             <span className="text-danger">Expected</span> : <span className="text-success">In stock</span>}
           </div>
-          <div className="col-12">
+          <div className="my-2">
             <span>{product.price} $</span>
           </div>
         </div>
