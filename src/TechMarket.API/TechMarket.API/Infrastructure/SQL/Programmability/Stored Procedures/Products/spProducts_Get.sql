@@ -60,7 +60,7 @@ BEGIN
         products.[ImageUrl],
         warehouse.[Quantity]
     FROM Products AS products
-        LEFT JOIN dbo.ProductsWarehouses AS warehouse
+        INNER JOIN dbo.ProductsWarehouses AS warehouse
             ON products.[Id] = warehouse.[ProductId]        
     WHERE (@CategoryId IS NULL) OR (products.[CategoryId] = @CategoryId)
     ORDER BY Products.[Id]
