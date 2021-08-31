@@ -9,7 +9,7 @@ const Product = (props) => {
   return (
     <div className="p-1">
 
-      <div className="row bg-light">
+      <div className="row bg-light h-100">
 
         <div className="col-12 text-center">
           <a href={`/product/${product.id}`}>
@@ -18,7 +18,7 @@ const Product = (props) => {
         </div>
 
         <div className="col-12 text-center">
-          <div>
+          <div className="pb-4">
             <h6 className="m-2">{product.name}</h6>
           </div>
           <div>{product.quantity === 0 ?
@@ -29,7 +29,7 @@ const Product = (props) => {
           </div>
         </div>
 
-        <div className="col-12 mb-4">
+        <div className="col-12 mb-2">
           <div className="row g-1">
             <div className="col-6">
               <button type="button"
