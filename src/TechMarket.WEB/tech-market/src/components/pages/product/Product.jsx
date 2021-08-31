@@ -23,8 +23,8 @@ const Product = () => {
                     </Col>
                     <Col>
                         {prod.quantity === 0 
-                            ? <span className='text-danger border border-danger'>Expected</span> 
-                                : <span className='text-success border border-success'>In stock</span>}
+                            ? <span className='text-danger border border-danger p-1'>Expected</span> 
+                                : <span className='text-success border border-success p-1'>In stock</span>}
                     </Col>
                     <Col>
                         <div className='text-end'>ID: {prod.id}</div>
