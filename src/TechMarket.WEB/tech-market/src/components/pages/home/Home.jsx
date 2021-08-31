@@ -9,7 +9,7 @@ import Product from '../../../UI/product/Product';
 
 const Home = () => {
     const { data : products } = useGetProduct();
-    console.log(products);
+    
     let images = useGetSliderImages().sliders.map(x => x.imageUrl);
 
     return (
