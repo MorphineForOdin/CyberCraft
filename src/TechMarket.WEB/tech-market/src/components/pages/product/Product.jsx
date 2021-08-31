@@ -22,8 +22,9 @@ const Product = () => {
                         <h3 className='text-center'>{prod.name}</h3>
                     </Col>
                     <Col>
-                        {prod.quantity === 0 ?
-                            <span className='text-danger'>Expected</span> : <span className='text-success'>In stock</span>}
+                        {prod.quantity === 0 
+                            ? <span className='text-danger border border-danger'>Expected</span> 
+                                : <span className='text-success border border-success'>In stock</span>}
                     </Col>
                     <Col>
                         <div className='text-end'>ID: {prod.id}</div>
@@ -43,7 +44,7 @@ const Product = () => {
 
                         <ul className='mt-2'>
                             <h4>Attributes:</h4>
-                            <span className='h5'>{attributesList}</span>
+                            <h5>{attributesList}</h5>
                         </ul>
                     </Col>
                     <Col className='mt-3'>
