@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import useGetProductById from '../../../api/hooks/useGetProductById';
-import './Product.css';
+import './Product.scss';
 
 const Product = () => {
 
@@ -38,7 +38,7 @@ const Product = () => {
                         <h4>Price: ${prod.price}</h4>
                         <Row>
                             <Col sm={12} md={5}>
-                                <button type="button" className="btn btn-success w-100">Buy</button>
+                                <button type="button" className="btn btn-dark w-100">Buy</button>
                             </Col>
                         </Row>
 
