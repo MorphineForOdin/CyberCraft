@@ -8,7 +8,7 @@ import useGetProduct from '../../../api/get_product/get_product';
 import Product from '../../../UI/product/Product';
 
 const Home = () => {
-    const { data : products } = useGetProduct();
+    const { data: products } = useGetProduct();
 
     let images = useGetSliderImages().sliders.map(x => x.imageUrl);
 
@@ -38,7 +38,7 @@ const Home = () => {
             </Container>
             <div className="container-fluid">
                 <Row className="text-center w-100">
-                    <span className="h1 text-dark shadow-sm rounded p-3 my-4">Best Products</span>
+                    <Col className="col-12 h1 text-dark shadow-sm rounded p-3 my-4">Best Products</Col>
                     {products
                         .map(prod => <Col className="col-6 col-md-2" key={prod.id}>
                             <Product data={prod}></Product> </Col>)}
