@@ -9,7 +9,7 @@ import Product from '../../../UI/product/Product';
 
 const Home = () => {
     const { data : products } = useGetProduct();
-    
+
     let images = useGetSliderImages().sliders.map(x => x.imageUrl);
 
     return (
@@ -37,7 +37,7 @@ const Home = () => {
                 </Row>
             </Container>
             <div className="container-fluid">
-                <Row className="justify-content-center text-center w-100">
+                <Row className="text-center w-100">
                     <span className="h1 text-dark shadow-sm rounded p-3 my-4">Best Products</span>
                     {products
                         .map(prod => <Col className="col-6 col-md-2" key={prod.id}>
