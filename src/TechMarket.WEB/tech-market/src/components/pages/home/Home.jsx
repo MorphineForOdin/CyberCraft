@@ -4,8 +4,11 @@ import { Container, Col, Row } from 'react-bootstrap';
 import ImageSlider from './../../Slider/ImageSlider';
 import useGetSliderImages from './../../../api/hooks/getSliderImages';
 import './Home.css';
+import useGetProduct from '../../../api/get_product/get_product';
+import Product from '../../../UI/product/Product';
 
 const Home = () => {
+    const { data: products } = useGetProduct();
 
     let images = useGetSliderImages().sliders.map(x => x.imageUrl);
 
@@ -33,8 +36,13 @@ const Home = () => {
                     </Col>
                 </Row>
             </Container>
-            <div className='mt-4'>
-                <h4 className='text-center'>Products will be here soon!</h4>
+            <div className="container-fluid">
+                <Row className="text-center w-100">
+                    <Col className="col-12 h1 text-dark shadow-sm rounded p-3 my-4">Best Products</Col>
+                    {products
+                        .map(prod => <Col className="col-6 col-md-2" key={prod.id}>
+                            <Product data={prod}></Product> </Col>)}
+                </Row>
             </div>
         </div>
     );
